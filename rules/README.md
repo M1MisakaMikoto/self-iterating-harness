@@ -1,14 +1,12 @@
-# rules — 规则框架（不含具体内容）
+# rules — 个人全局工作规范（完整记录）+ 规则模板
 
-本目录只放"如何组织规则"的框架与模板，**不存放具体规则内容**。
+本目录**完整记录**个人全局工作规范（预制内容）：
 
-具体内容（个人工作规则、项目约定等）记录在对应项目仓库：
+- `AGENTS.global.md`：Codex 全局规则，由 `sync.ps1` 部署到 `~/.codex/AGENTS.md`。
+- `CLAUDE.global.md`：Claude Code 全局规则，由 `sync.ps1` 部署到 `~/.claude/CLAUDE.md`。
+- `AGENTS.template.md`：新建项目时的规则模板（框架）。
 
-- 项目根 `AGENTS.md` / `CLAUDE.md`：项目级具体内容。
-- 需要全局生效时，将内容手动维护于 `~/.codex/AGENTS.md`（Codex）与 `~/.claude/CLAUDE.md`（Claude Code）。
+## 内容边界
 
-## 使用方式
-
-1. 复制 `AGENTS.template.md` 到项目根并命名为 `AGENTS.md`，把占位符替换为项目具体规则。
-2. 如需全局生效，将最终内容复制到 `~/.codex/AGENTS.md` 与 `~/.claude/CLAUDE.md`。
-3. 本仓库的 `scripts/` 只负责技能与配置模板的部署，不托管具体规则内容。
+- **预制内容完整记录**：`AGENTS.md` / `CLAUDE.md` / skills / 配置模板等预先编写的内容，完整保留在本仓库。
+- **agent 工作产物只记框架**：lab 等由 agent 工作产生的实验、报告、证据等内容，只保留结构/模板框架，具体产物留在项目本地，不提交版本库。

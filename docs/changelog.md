@@ -1,5 +1,11 @@
 # 变更记录
 
+## [0.5.0] - 2026-08-25
+
+- 修正内容边界：预制内容（AGENTS.md / CLAUDE.md / skills）**完整记录**，恢复 `rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 完整规则内容。
+- `sync.ps1` 恢复全局规则部署步骤。
+- 明确 agent 工作产物（lab 实验、报告、证据）只记录框架，具体内容留在项目本地。
+
 ## [0.4.0] - 2026-08-25
 
 - 调整仓库定位：只放框架与模板，移除具体规则内容（`rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 删除）。

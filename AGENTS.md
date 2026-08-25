@@ -18,17 +18,22 @@
 | 路径 | 内容 | 维护要求 |
 |---|---|---|
 | `AGENTS.md` / `CLAUDE.md` | 仓库级 agent 说明 | 保持精简，不重复 README |
-| `rules/` | 规则框架与模板 | 只放结构模板，不放具体规则内容 |
+| `rules/` | 个人全局工作规范（完整）+ 规则模板 | 修改后运行 `sync.ps1` 部署到 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md` |
 | `skills/my/` | 自研 skills | 每个 skill 一个子目录，含 `SKILL.md` |
 | `skills/vendor/` | 第三方 skills | 按来源分组，每组必须含 `SOURCE.md` |
 | `configs/` | 工具配置模板 | 只用占位符，禁止真实密钥 |
 | `scripts/` | 同步/校验/拉取脚本 | PowerShell，基于本仓库根目录的相对路径 |
 | `docs/` | 使用说明与变更记录 | 有实质变更时更新 `changelog.md` |
 
-## 仓库定位
+## 内容边界
 
-- 本仓库只放框架与可复用资产（脚本、配置模板、技能、规则模板），**不包含具体规则内容与项目内容**。
-- 具体内容（如个人工作规则、项目约定）记录在对应项目仓库的 `AGENTS.md` / `CLAUDE.md`。
+- 预制内容（AGENTS.md / CLAUDE.md / skills / 配置模板）**完整记录**在本仓库。
+- agent 工作产物（lab 实验、报告、证据等）**只记录框架**，具体内容留在项目本地不提交。
+
+## 全局规则维护
+
+- `rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 是个人全局工作规范，修改后运行 `scripts/sync.ps1` 部署。
+- 目标文件已存在时先备份 `.bak-<时间戳>` 再覆盖。
 
 ## 新增/修改 skill 的规则
 
