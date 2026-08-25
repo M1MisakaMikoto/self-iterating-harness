@@ -22,11 +22,11 @@ cd ai-coding-configs
 
 ```text
 # ai-coding-configs sync 自动追加
-.dev/service/
+.dev/private/
 /AGENTS.md
 ```
 
-即：服务于 coding agent 的内容（`.dev/service/`）与项目根 `AGENTS.md` 不记录；lab 等 agent 产出内容不被忽略、自动记录。
+即：服务于 coding agent 的内容（`.dev/private/`）与项目根 `AGENTS.md` 不记录；`.dev/public/`（lab 等 agent 产出与项目内容）不被忽略、自动记录。
 
 ### 内容边界
 

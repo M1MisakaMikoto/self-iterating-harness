@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.6.1] - 2026-08-25
+
+- 项目 `.dev` 分层更新：`private/`（服务 coding agent，不记录）与 `public/`（服务项目，记录）。
+- `sync.ps1` 追加的忽略规则由 `.dev/service/` 改为 `.dev/private/`。
+
 ## [0.6.0] - 2026-08-25
 
 - 结构重构：所有内容统一进 `.dev/`，根目录只留入口（README / AGENTS / CLAUDE / .gitignore）。

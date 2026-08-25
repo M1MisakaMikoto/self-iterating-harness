@@ -10,7 +10,7 @@
   - 规则: .dev/rules/AGENTS.global.md、CLAUDE.global.md 部署到
     ~/.codex/AGENTS.md、~/.claude/CLAUDE.md（已存在时先备份）。
   - 项目: 若本仓库位于某个项目内，向项目根 .gitignore 追加
-    ".dev/service/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。
+    ".dev/private/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。
   - 使用 -DryRun 可只预览不执行。
 
 .EXAMPLE
@@ -98,7 +98,7 @@ function Add-ProjectGitIgnoreRules {
         return
     }
     $content = Get-Content -Raw -Encoding UTF8 $gitignore
-    $rules = @(".dev/service/", "/AGENTS.md")
+    $rules = @(".dev/private/", "/AGENTS.md")
     $missing = @()
     foreach ($rule in $rules) {
         if ($content -notmatch [regex]::Escape($rule)) { $missing += $rule }
@@ -113,7 +113,7 @@ function Add-ProjectGitIgnoreRules {
     }
     $appendText = [Environment]::NewLine + [Environment]::NewLine +
         "# ai-coding-configs sync 自动追加：服务 coding agent 的内容不入库" +
-        [Environment]::NewLine + ".dev/service/" + [Environment]::NewLine +
+        [Environment]::NewLine + ".dev/private/" + [Environment]::NewLine +
         "/AGENTS.md" + [Environment]::NewLine
     [System.IO.File]::AppendAllText($gitignore, $appendText, (New-Object System.Text.UTF8Encoding($false)))
     Write-Host "  [ok] 已追加忽略规则 -> $gitignore"

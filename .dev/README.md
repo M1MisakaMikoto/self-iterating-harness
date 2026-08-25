@@ -45,7 +45,7 @@
 ## 与项目仓库的关系
 
 - 本仓库可放在任意项目内（如 `ai-coding-configs/` 子目录），其根 `README.md` 与项目根 `README.md` 互不影响（不同目录、不同仓库）。
-- `sync.ps1` 会把服务 coding agent 的忽略规则追加到项目 `.gitignore`（仅当不存在时），产出内容默认不被忽略、自动记录。
+- `sync.ps1` 会把服务 coding agent 的忽略规则（`.dev/private/`、`/AGENTS.md`）追加到项目 `.gitignore`（仅当不存在时）；`.dev/public/` 内容默认不被忽略、自动记录。
 
 详细说明见 [.dev/docs/usage.md](docs/usage.md)。
 
