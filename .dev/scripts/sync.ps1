@@ -3,15 +3,19 @@
   将本仓库的 skills 与配置模板部署到本机 Codex / Claude 目录。
 
 .DESCRIPTION
-  - skills: 将 skills/my 与 skills/vendor 下含 SKILL.md 的目录复制到
+  - skills: 将 .dev/skills/my 与 .dev/skills/vendor 下含 SKILL.md 的目录复制到
     ~/.codex/skills 与 ~/.claude/skills（覆盖同名目录）。
-  - 配置: configs/codex、configs/claude 下的模板只在目标文件不存在时复制，
+  - 配置: .dev/configs/codex、.dev/configs/claude 下的模板只在目标文件不存在时复制，
     避免覆盖你本机已修改的配置。
+  - 规则: .dev/rules/AGENTS.global.md、CLAUDE.global.md 部署到
+    ~/.codex/AGENTS.md、~/.claude/CLAUDE.md（已存在时先备份）。
+  - 项目: 若本仓库位于某个项目内，向项目根 .gitignore 追加
+    ".dev/service/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。
   - 使用 -DryRun 可只预览不执行。
 
 .EXAMPLE
-  .\scripts\sync.ps1 -DryRun
-  .\scripts\sync.ps1
+  .\.dev\scripts\sync.ps1 -DryRun
+  .\.dev\scripts\sync.ps1
 #>
 [CmdletBinding()]
 param(
@@ -83,6 +87,38 @@ function Copy-Templates {
     }
 }
 
+function Add-ProjectGitIgnoreRules {
+    param(
+        [string]$ProjectRoot,
+        [switch]$DryRun
+    )
+    $gitignore = Join-Path $ProjectRoot ".gitignore"
+    if (-not (Test-Path $gitignore)) {
+        Write-Host "  [skip] 项目根无 .gitignore: $ProjectRoot"
+        return
+    }
+    $content = Get-Content -Raw -Encoding UTF8 $gitignore
+    $rules = @(".dev/service/", "/AGENTS.md")
+    $missing = @()
+    foreach ($rule in $rules) {
+        if ($content -notmatch [regex]::Escape($rule)) { $missing += $rule }
+    }
+    if ($missing.Count -eq 0) {
+        Write-Host "  [skip] 忽略规则已存在: $gitignore"
+        return
+    }
+    if ($DryRun) {
+        Write-Host "  [dry-run] 向 $gitignore 追加: $($missing -join ', ')"
+        return
+    }
+    $appendText = [Environment]::NewLine + [Environment]::NewLine +
+        "# ai-coding-configs sync 自动追加：服务 coding agent 的内容不入库" +
+        [Environment]::NewLine + ".dev/service/" + [Environment]::NewLine +
+        "/AGENTS.md" + [Environment]::NewLine
+    [System.IO.File]::AppendAllText($gitignore, $appendText, (New-Object System.Text.UTF8Encoding($false)))
+    Write-Host "  [ok] 已追加忽略规则 -> $gitignore"
+}
+
 $allSkillDirs = @()
 $allSkillDirs += Get-SkillDirs $MySkillsRoot
 $allSkillDirs += Get-SkillDirs $VendorSkillsRoot
@@ -124,6 +160,15 @@ foreach ($rule in $globalRules) {
         Copy-Item -LiteralPath $src -Destination $rule.Target -Force
         Write-Host "  [ok] $($rule.Target)"
     }
+}
+
+$ConfigRoot = Split-Path -Parent $RepoRoot
+$ProjectRoot = Split-Path -Parent $ConfigRoot
+if (Test-Path (Join-Path $ProjectRoot ".git")) {
+    Write-Step "配置项目 .gitignore（忽略服务内容，产出内容自动记录）"
+    Add-ProjectGitIgnoreRules $ProjectRoot -DryRun:$DryRun
+} else {
+    Write-Host "  [skip] 未检测到项目仓库（本仓库为独立部署）"
 }
 
 if ($DryRun) {

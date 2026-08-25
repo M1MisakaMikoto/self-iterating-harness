@@ -1,5 +1,12 @@
 # 变更记录
 
+## [0.6.0] - 2026-08-25
+
+- 结构重构：所有内容统一进 `.dev/`，根目录只留入口（README / AGENTS / CLAUDE / .gitignore）。
+- 新增 `.dev/lab/`（Agent Lab 框架）、`.dev/preview/`（门户模板）、`.dev/plans/`（计划目录）。
+- 脚本移至 `.dev/scripts/`，命令相应变为 `.\\.dev\\scripts\\...`。
+- `sync.ps1` 新增安装步骤：向项目根 `.gitignore` 追加忽略规则（`.dev/service/`、`/AGENTS.md`），仅当不存在时追加。
+
 ## [0.5.0] - 2026-08-25
 
 - 修正内容边界：预制内容（AGENTS.md / CLAUDE.md / skills）**完整记录**，恢复 `rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 完整规则内容。

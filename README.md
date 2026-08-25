@@ -1,61 +1,23 @@
 # ai-coding-configs
 
-个人 AI 编程配置仓库：集中存放自用的 `AGENTS.md` / `CLAUDE.md`、自研 skills、从社区拉取的第三方 skills，以及 Codex / Claude Code / MCP 等工具的配置模板。
+个人 AI 编程配置仓库：AGENTS/CLAUDE 全局规则、自研与第三方 skills、工具配置模板与配套脚本。
 
-> 本仓库是"事实源（source of truth）"：所有内容以这里为准，再通过同步脚本部署到本机工具目录。
+> 本文件只是仓库入口（GitHub 主页展示）。详细说明、目录结构与使用方式见 [.dev/README.md](.dev/README.md)。
 
-## 目录结构
+## 一句话结构
 
 ```text
 .
-├─ AGENTS.md            # 给 Codex 等 agent 的仓库说明（AI 维护本仓库时遵守）
-├─ CLAUDE.md            # 给 Claude Code 的仓库说明
-├─ skills/
-│  ├─ my/               # 自研 skills，每个子目录一个 skill（含 SKILL.md）
-│  └─ vendor/           # 第三方 skills，按来源分组，每组带 SOURCE.md
-├─ rules/               # 个人全局工作规范（完整）+ 规则模板
-├─ configs/             # 工具配置模板（不含真实密钥）
-│  ├─ codex/
-│  ├─ claude/
-│  └─ mcp/
-├─ scripts/
-│  ├─ sync.ps1          # 同步 skills/配置到本机 ~/.codex、~/.claude
-│  ├─ pull-vendor.ps1   # 按 manifest 拉取/更新第三方 skills
-│  ├─ validate.ps1      # 校验 skills 结构（提交前运行）
-│  └─ vendor-manifest.json
-├─ docs/
-│  ├─ usage.md          # 详细使用说明
-│  └─ changelog.md
-└─ README.md
+├─ README.md / AGENTS.md / CLAUDE.md / .gitignore   # 根只留入口
+└─ .dev/                                            # 所有内容
+   ├─ lab/       # Agent Lab 框架（规范、词汇表、ADR）
+   ├─ preview/   # 前端 preview 模板（门户页）
+   ├─ plans/     # 计划目录
+   ├─ rules/     # 全局工作规范（完整）+ 模板
+   ├─ skills/    # 自研 + 第三方 skills（完整）
+   ├─ configs/   # Codex / Claude / MCP 配置模板
+   ├─ scripts/   # sync / validate / pull-vendor（零安装）
+   └─ docs/      # usage / changelog
 ```
 
-## 快速开始
-
-```powershell
-# 1. 校验仓库内 skills 结构是否合法
-.\scripts\validate.ps1
-
-# 2. 一键部署到本机：skills + 全局规则 + 配置模板（配置模板不覆盖已存在的本地文件）
-.\scripts\sync.ps1
-
-# 预览将执行的操作
-.\scripts\sync.ps1 -DryRun
-```
-
-零安装：仅依赖 PowerShell 与 git，不运行任何安装程序。
-
-## 内容边界
-
-- **预制内容完整记录**：AGENTS.md / CLAUDE.md / skills / 配置模板等预先编写的内容完整保留。
-- **agent 工作产物只记框架**：lab 等 agent 工作产生的实验、报告、证据只保留结构/模板框架，具体产物留在项目本地。
-
-详细说明见 [docs/usage.md](docs/usage.md)。
-
-## 约定（摘要）
-
-- 每个 skill 独立目录，根目录必须有 `SKILL.md`，frontmatter 包含 `name` 与 `description`。
-- 第三方内容一律进 `skills/vendor/<来源>/`，并维护 `SOURCE.md`（来源 URL、commit、许可证、本地修改）。
-- `configs/` 只放模板与占位符，真实密钥永不入库。
-- 提交前运行 `scripts/validate.ps1`；更新第三方前运行 `scripts/pull-vendor.ps1`。
-
-完整规则见 [AGENTS.md](AGENTS.md)。
+快速开始：`.\\.dev\\scripts\\validate.ps1` 校验，`.\\.dev\\scripts\\sync.ps1` 一键部署到本机。
