@@ -1,0 +1,11 @@
+# Codex 配置模板
+# 用途: 复制到 ~/.codex/config.toml 后按需修改。
+# 注意: 配置项随 Codex 版本演进，以下仅为示例占位，请以当前版本官方文档为准。
+
+# model = "<MODEL_NAME>"
+# sandbox_mode = "read-only"
+# approval_policy = "never"
+# autoupdate = true
+
+# 远程服务/API 相关占位（真实密钥不要写入本仓库）:
+# api_key_env_var = "<YOUR_API_KEY_ENV_VAR>"

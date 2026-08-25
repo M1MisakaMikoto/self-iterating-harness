@@ -1,0 +1,18 @@
+{
+  "_comment": "Claude Code 权限模板。复制到 ~/.claude/settings.json 或项目 .claude/settings.json 后按需修改。",
+  "permissions": {
+    "allow": [
+      "git status",
+      "git diff",
+      "npm run *"
+    ],
+    "ask": [
+      "git push",
+      "npm install"
+    ],
+    "deny": [
+      "git push --force",
+      "rm -rf /"
+    ]
+  }
+}

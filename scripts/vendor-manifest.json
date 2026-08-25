@@ -1,0 +1,10 @@
+[
+  {
+    "name": "example-skill-pack",
+    "url": "https://github.com/OWNER/REPO.git",
+    "commit": "main",
+    "skills": [
+      "skills/example-skill"
+    ]
+  }
+]

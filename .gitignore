@@ -1,0 +1,23 @@
+# ---- 密钥与本地文件 ----
+.env
+.env.*
+!.env.example
+*.local.*
+*secret*
+
+# ---- 系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ---- 工具临时产物 ----
+scripts/tmp/
+*.tmp
+
+# ---- 依赖目录（如需测试脚本时） ----
+node_modules/
+.venv/
