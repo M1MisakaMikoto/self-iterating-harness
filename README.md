@@ -13,7 +13,7 @@
 ├─ skills/
 │  ├─ my/               # 自研 skills，每个子目录一个 skill（含 SKILL.md）
 │  └─ vendor/           # 第三方 skills，按来源分组，每组带 SOURCE.md
-├─ rules/               # 个人全局工作规范（部署到 ~/.codex/AGENTS.md、~/.claude/CLAUDE.md）
+├─ rules/               # 规则框架与模板（不含具体内容，具体内容在各项目）
 ├─ configs/             # 工具配置模板（不含真实密钥）
 │  ├─ codex/
 │  ├─ claude/
@@ -35,7 +35,7 @@
 # 1. 校验仓库内 skills 结构是否合法
 .\scripts\validate.ps1
 
-# 2. 一键部署到本机：skills + 全局规则 + 配置模板（配置模板不覆盖已存在的本地文件）
+# 2. 一键部署到本机：skills + 配置模板（配置模板不覆盖已存在的本地文件）
 .\scripts\sync.ps1
 
 # 预览将执行的操作
@@ -43,6 +43,10 @@
 ```
 
 零安装：仅依赖 PowerShell 与 git，不运行任何安装程序。
+
+## 仓库定位
+
+本仓库只放**框架与可复用资产**（脚本、配置模板、技能、规则模板），不放具体规则内容与项目内容；具体内容记录在各项目仓库。
 
 详细说明见 [docs/usage.md](docs/usage.md)。
 

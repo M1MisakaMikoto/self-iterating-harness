@@ -1,5 +1,12 @@
 # 变更记录
 
+## [0.4.0] - 2026-08-25
+
+- 调整仓库定位：只放框架与模板，移除具体规则内容（`rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 删除）。
+- `rules/` 改为规则框架：新增 `README.md` 与 `AGENTS.template.md`（占位模板）。
+- `sync.ps1` 移除全局规则部署步骤，只负责 skills 与配置模板。
+- 具体规则内容由各项目仓库记录；全局生效时手动维护 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md`。
+
 ## [0.3.0] - 2026-08-25
 
 - 新增 `rules/AGENTS.global.md`、`rules/CLAUDE.global.md`：个人全局工作规范事实源。

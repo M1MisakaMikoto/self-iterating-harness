@@ -10,13 +10,15 @@ cd ai-coding-configs
 # 校验结构
 .\scripts\validate.ps1
 
-# 一键同步到本机：skills + 全局规则 + 配置模板（零安装，仅需 PowerShell 与 git）
+# 一键同步到本机：skills + 配置模板（零安装，仅需 PowerShell 与 git）
 .\scripts\sync.ps1
 ```
 
-`sync.ps1` 会把 `rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 部署为
-`~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md`，对所有项目生效。目标文件已存在时会先备份为
-`.bak-<时间戳>` 再覆盖。
+### 框架与内容的边界
+
+- 本仓库（ai-coding-configs）只放框架：脚本、配置模板、技能、规则模板（`rules/AGENTS.template.md`）。
+- 具体内容（个人规则、项目约定）写在对应项目仓库的 `AGENTS.md` / `CLAUDE.md`。
+- 如需全局生效，把具体内容手动复制到 `~/.codex/AGENTS.md` 与 `~/.claude/CLAUDE.md`。
 
 ## 日常操作
 

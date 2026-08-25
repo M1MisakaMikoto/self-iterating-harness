@@ -95,37 +95,6 @@ Write-Step "同步配置模板 (不覆盖已存在的本地配置)"
 Copy-Templates (Join-Path $RepoRoot "configs\codex") $CodexConfigDir
 Copy-Templates (Join-Path $RepoRoot "configs\claude") $ClaudeConfigDir
 
-Write-Step "同步全局规则 (~/.codex/AGENTS.md, ~/.claude/CLAUDE.md)"
-$globalRules = @(
-    @{ Source = "rules\AGENTS.global.md"; Target = (Join-Path $HOME ".codex\AGENTS.md") },
-    @{ Source = "rules\CLAUDE.global.md"; Target = (Join-Path $HOME ".claude\CLAUDE.md") }
-)
-foreach ($rule in $globalRules) {
-    $src = Join-Path $RepoRoot $rule.Source
-    if (-not (Test-Path $src)) {
-        Write-Warning "缺少规则文件: $($rule.Source)"
-        continue
-    }
-    if (Test-Path $rule.Target) {
-        if ($DryRun) {
-            Write-Host "  [dry-run] 备份并覆盖 $($rule.Target)"
-            continue
-        }
-        $bak = "$($rule.Target).bak-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
-        Copy-Item -LiteralPath $rule.Target -Destination $bak -Force
-        Copy-Item -LiteralPath $src -Destination $rule.Target -Force
-        Write-Host "  [ok] 已备份 $($rule.Target) -> $bak 并覆盖"
-    } else {
-        if ($DryRun) {
-            Write-Host "  [dry-run] 写入 $($rule.Target)"
-            continue
-        }
-        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $rule.Target) | Out-Null
-        Copy-Item -LiteralPath $src -Destination $rule.Target -Force
-        Write-Host "  [ok] $($rule.Target)"
-    }
-}
-
 if ($DryRun) {
     Write-Host "`n[dry-run] 以上为预览，未做任何修改。" -ForegroundColor Cyan
 } else {
