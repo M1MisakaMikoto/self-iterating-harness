@@ -18,11 +18,17 @@
 | 路径 | 内容 | 维护要求 |
 |---|---|---|
 | `AGENTS.md` / `CLAUDE.md` | 仓库级 agent 说明 | 保持精简，不重复 README |
+| `rules/` | 个人全局工作规范（事实源） | 修改后运行 `sync.ps1` 部署到 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md` |
 | `skills/my/` | 自研 skills | 每个 skill 一个子目录，含 `SKILL.md` |
 | `skills/vendor/` | 第三方 skills | 按来源分组，每组必须含 `SOURCE.md` |
 | `configs/` | 工具配置模板 | 只用占位符，禁止真实密钥 |
 | `scripts/` | 同步/校验/拉取脚本 | PowerShell，基于本仓库根目录的相对路径 |
 | `docs/` | 使用说明与变更记录 | 有实质变更时更新 `changelog.md` |
+
+## 全局规则维护
+
+- `rules/AGENTS.global.md`、`rules/CLAUDE.global.md` 是个人全局工作规范的事实源，内容应保持与项目级规则一致或明确区分。
+- 修改后必须运行 `scripts/sync.ps1` 部署，否则本机 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md` 不会更新。
 
 ## 新增/修改 skill 的规则
 

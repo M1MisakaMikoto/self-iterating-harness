@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.3.0] - 2026-08-25
+
+- 新增 `rules/AGENTS.global.md`、`rules/CLAUDE.global.md`：个人全局工作规范事实源。
+- `sync.ps1` 新增全局规则部署：写入 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md`，已存在时先备份再覆盖。
+
 ## [0.2.0] - 2026-08-25
 
 - 新增第三方 skills：`mattpocock-skills` 的 `grill-with-docs` 及其依赖 `grilling`、`domain-modeling`（含 SOURCE.md 与 LICENSE）。
