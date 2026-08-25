@@ -1,10 +1,12 @@
 [
   {
-    "name": "example-skill-pack",
-    "url": "https://github.com/OWNER/REPO.git",
+    "name": "mattpocock-skills",
+    "url": "https://github.com/mattpocock/skills.git",
     "commit": "main",
     "skills": [
-      "skills/example-skill"
+      "skills/engineering/grill-with-docs",
+      "skills/engineering/domain-modeling",
+      "skills/productivity/grilling"
     ]
   }
 ]

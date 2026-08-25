@@ -1,5 +1,12 @@
 # 变更记录
 
+## [0.2.0] - 2026-08-25
+
+- 新增第三方 skills：`mattpocock-skills` 的 `grill-with-docs` 及其依赖 `grilling`、`domain-modeling`（含 SOURCE.md 与 LICENSE）。
+- `pull-vendor.ps1`：使用 OpenSSL 后端 + HTTP/1.1 提升 GitHub 连接兼容性；克隆/检出失败自动重试 3 次。
+- `validate.ps1`：支持 vendor 来源组嵌套结构（组级 SOURCE.md + 组内递归校验 SKILL.md）。
+- `sync.ps1`：递归发现 skills，支持 vendor 嵌套目录。
+
 ## [0.1.0] - 2026-08-25
 
 - 初始化仓库骨架：README、AGENTS.md、CLAUDE.md、目录结构。

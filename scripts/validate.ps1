@@ -29,24 +29,40 @@ function Test-Frontmatter {
     ($fm -match '(?im)^name\s*:') -and ($fm -match '(?im)^description\s*:')
 }
 
-foreach ($root in @("skills\my", "skills\vendor")) {
+function Test-SkillDir {
+    param([string]$Dir, [string]$Label)
+    $skillFile = Join-Path $Dir "SKILL.md"
+    if (-not (Test-Path $skillFile)) {
+        $script:errors += "缺少 SKILL.md: $Label"
+        return
+    }
+    if (-not (Test-Frontmatter $skillFile)) {
+        $script:errors += "SKILL.md 缺少 name/description frontmatter: $Label"
+    }
+}
+
+# skills/my: 每个子目录是一个 skill
+foreach ($root in @("skills\my")) {
     $full = Join-Path $RepoRoot $root
     if (-not (Test-Path $full)) { continue }
     Get-ChildItem -Path $full -Directory | ForEach-Object {
-        $skillDir = $_.FullName
-        $skillFile = Join-Path $skillDir "SKILL.md"
-        if (-not (Test-Path $skillFile)) {
-            $errors += "缺少 SKILL.md: $root/$($_.Name)"
-            return
+        Test-SkillDir $_.FullName "$root/$($_.Name)"
+    }
+}
+
+# skills/vendor: 每个子目录是一个来源组（要求 SOURCE.md），组内递归找 skill
+$vendorRoot = Join-Path $RepoRoot "skills\vendor"
+if (Test-Path $vendorRoot) {
+    Get-ChildItem -Path $vendorRoot -Directory | ForEach-Object {
+        $group = $_
+        $sourceMd = Join-Path $group.FullName "SOURCE.md"
+        if (-not (Test-Path $sourceMd)) {
+            $errors += "vendor 来源组缺少 SOURCE.md: skills/vendor/$($group.Name)"
         }
-        if (-not (Test-Frontmatter $skillFile)) {
-            $errors += "SKILL.md 缺少 name/description frontmatter: $root/$($_.Name)"
-        }
-        if ($root -eq "skills\vendor") {
-            $sourceMd = Join-Path $skillDir "SOURCE.md"
-            if (-not (Test-Path $sourceMd)) {
-                $errors += "vendor 组缺少 SOURCE.md: $root/$($_.Name)"
-            }
+        Get-ChildItem -Path $group.FullName -Directory -Recurse | Where-Object {
+            Test-Path (Join-Path $_.FullName "SKILL.md")
+        } | ForEach-Object {
+            Test-SkillDir $_.FullName "skills/vendor/$($group.Name)/$($_.Name)"
         }
     }
 }

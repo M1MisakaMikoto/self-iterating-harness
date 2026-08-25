@@ -50,16 +50,38 @@ foreach ($entry in $entries) {
 
     $temp = Join-Path ([System.IO.Path]::GetTempPath()) ("vendor-" + [guid]::NewGuid().ToString("N"))
     try {
-        git clone --quiet --filter=blob:none --no-checkout $entry.url $temp
-        if ($LASTEXITCODE -ne 0) { throw "git clone 失败: $($entry.url)" }
+        $gitArgs = @("-c", "http.sslBackend=openssl", "-c", "http.version=HTTP/1.1")
 
-        if ($entry.commit) {
-            git -C $temp checkout --quiet $entry.commit
-            if ($LASTEXITCODE -ne 0) { throw "checkout 失败: $($entry.commit)" }
-        } else {
-            git -C $temp checkout --quiet
-            if ($LASTEXITCODE -ne 0) { throw "checkout 默认分支失败" }
+        $cloneOk = $false
+        for ($i = 1; $i -le 3 -and -not $cloneOk; $i++) {
+            & git @gitArgs clone --quiet --filter=blob:none --no-checkout $entry.url $temp 2>$null
+            $cloneOk = ($LASTEXITCODE -eq 0)
+            if (-not $cloneOk) {
+                if ($i -lt 3) {
+                    if (Test-Path $temp) { Remove-Item -LiteralPath $temp -Recurse -Force -ErrorAction SilentlyContinue }
+                    Write-Warning "git clone 失败（第 $i/3 次），5 秒后重试: $($entry.url)"
+                    Start-Sleep -Seconds 5
+                }
+            }
         }
+        if (-not $cloneOk) { throw "git clone 失败: $($entry.url)" }
+
+        $checkoutOk = $false
+        for ($i = 1; $i -le 3 -and -not $checkoutOk; $i++) {
+            if ($entry.commit) {
+                & git @gitArgs -C $temp checkout --quiet $entry.commit 2>$null
+            } else {
+                & git @gitArgs -C $temp checkout --quiet 2>$null
+            }
+            $checkoutOk = ($LASTEXITCODE -eq 0)
+            if (-not $checkoutOk) {
+                if ($i -lt 3) {
+                    Write-Warning "checkout 失败（第 $i/3 次），5 秒后重试"
+                    Start-Sleep -Seconds 5
+                }
+            }
+        }
+        if (-not $checkoutOk) { throw "checkout 失败: $($entry.commit)" }
 
         $commitHash = (git -C $temp rev-parse HEAD).Trim()
         New-Item -ItemType Directory -Force -Path $dest | Out-Null

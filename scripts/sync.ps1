@@ -36,7 +36,7 @@ function Write-Step {
 function Get-SkillDirs {
     param([string]$Root)
     if (-not (Test-Path $Root)) { return @() }
-    Get-ChildItem -Path $Root -Directory | Where-Object {
+    Get-ChildItem -Path $Root -Directory -Recurse | Where-Object {
         Test-Path (Join-Path $_.FullName "SKILL.md")
     } | Select-Object -ExpandProperty FullName
 }
