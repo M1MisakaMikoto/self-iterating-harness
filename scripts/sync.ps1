@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   将本仓库的 skills 与配置模板部署到本机 Codex / Claude 目录。
 

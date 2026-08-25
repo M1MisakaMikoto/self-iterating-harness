@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   按 scripts/vendor-manifest.json 拉取/更新第三方 skills 到 skills/vendor。
 
