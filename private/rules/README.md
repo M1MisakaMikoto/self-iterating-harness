@@ -16,3 +16,4 @@
 
 - **UAC（用户辅助内容）**：指导如何向用户汇报与交互，跨模型稳定，更换模型时不变。
 - **MAC（模型辅助内容）**：增强工作能力的方法论与纪律，与模型相关，更换模型时按 `ABLATION.md` 做消融实验。
+- **存放位置（private/public 原则）**：`private/` = UAC 用户辅助内容；`public/` = MAC 模型辅助内容。本目录（rules）属 UAC，位于 `private/rules/`。

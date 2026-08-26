@@ -1,5 +1,11 @@
 # 变更记录
 
+## [0.13.0] - 2026-08-26
+
+- **记录 private/public 原则（勿忘）**：`private/` = UAC 用户辅助内容（跨模型稳定，指导与用户交互/汇报）；`public/` = MAC 模型辅助内容（增强模型能力，换模型需消融实验）。
+- 内容归类：private ← rules / docs / lab 框架（+ AGENTS / CLAUDE 工作指南）；public ← skills / configs / scripts / preview / plans（+ 项目实验）。
+- 跟踪：private 为分离区（仅 harness 仓库跟踪、项目忽略）；public 为组合区（项目仓库与 harness 仓库都跟踪）。
+
 ## [0.12.0] - 2026-08-26
 
 - 按 private/public 原则收纳：harness 内容（服务 coding agent：rules/skills/configs/scripts/docs/lab 框架/preview 模板/plans 框架）全部进 `private/`（本仓库跟踪、项目忽略）；`public/` 只放服务项目/产出的内容（实验、门户、计划，项目跟踪、本仓库忽略）。
