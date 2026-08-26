@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.12.0] - 2026-08-26
+
+- 按 private/public 原则收纳：harness 内容（服务 coding agent：rules/skills/configs/scripts/docs/lab 框架/preview 模板/plans 框架）全部进 `private/`（本仓库跟踪、项目忽略）；`public/` 只放服务项目/产出的内容（实验、门户、计划，项目跟踪、本仓库忽略）。
+- 项目私有内容（`private/records/`、`private/skills/docs-writing/`、`private/skills/review/`）两仓库都不跟踪；命令与文档路径更新为 `private/scripts/...`。
+
 ## [0.11.0] - 2026-08-26
 
 - 仓库根迁移至项目 `.dev/`：harness 与项目**混合在同一目录**，项目 `.git` 与 harness `.dev/.git` 两个 git 仓库同时可见，靠 ignore 配置分离组合（项目忽略 `.dev/*` 仅保留 `public/**`，本仓库忽略 `private/`、`public/`）。
