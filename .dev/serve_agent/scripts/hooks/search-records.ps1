@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-    path-memory 检索：按 tag / 关键词在 .dev/private/records 中搜索记录。
+    path-memory 检索：按 tag / 关键词在 .dev/serve_agent/records 中搜索记录。
 .EXAMPLE
     powershell -NoProfile -ExecutionPolicy Bypass -File search-records.ps1 -Tag 纠正
     powershell -NoProfile -ExecutionPolicy Bypass -File search-records.ps1 -Keyword "跑通"
@@ -34,14 +34,14 @@ function Find-RecordsDir {
     param([string]$StartDir)
     $root = Find-ProjectRoot -StartDir $StartDir
     if (-not $root) { return $null }
-    $records = Join-Path $root '.dev\private\records'
+$records = Join-Path $root '.dev\serve_agent\records'
     if (Test-Path -LiteralPath $records) { return $records }
     return $null
 }
 
 $recordsDir = $Path
 if (-not $recordsDir) { $recordsDir = Find-RecordsDir -StartDir (Get-Location).Path }
-if (-not $recordsDir) { Write-Output '未找到 records 目录（.dev/private/records）'; exit 1 }
+if (-not $recordsDir) { Write-Output '未找到 records 目录（.dev/serve_agent/records）'; exit 1 }
 
 $files = @(Get-ChildItem -LiteralPath $recordsDir -Recurse -File -Filter '*.md' | Where-Object {
     $_.Name -ne 'README.md' -and $_.Directory.Name -ne '.staging'

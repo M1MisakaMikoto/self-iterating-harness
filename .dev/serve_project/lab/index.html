@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agent Lab · Preview 模板</title>
+<title>Agent Lab</title>
 <style>
   :root {
     --bg: #0d1117;
@@ -68,6 +68,7 @@
     margin-top: 0.5rem;
   }
   .tag.vendor { color: var(--warn); border-color: var(--warn); }
+  .tag.self { color: var(--accent2); border-color: var(--accent2); }
   .note {
     background: var(--bg-card);
     border: 1px dashed var(--border);
@@ -98,36 +99,62 @@
 
 <header>
   <h1>Agent Lab</h1>
-  <p>门户模板（preview）· 复制到项目 .dev/lab 后按实际内容修改链接</p>
+  <p>个人 AI 代理实验场 · 零依赖 · 克隆即用</p>
 </header>
 
 <main>
   <section>
-    <h2>使用说明</h2>
+    <h2>快速开始</h2>
     <div class="note">
-      本文件是门户页模板，属于预制框架。复制到项目的 <code>.dev/lab/index.html</code> 后：
-      把"实验导航"卡片改成项目实际的实验目录，并核对"文档与规范""Skills 索引"的相对链接。
+      直接双击本文件即可浏览；推荐用本地 HTTP 服务，markdown 链接可正常查看：<br>
+      <code>python -m http.server 8000 --directory .dev\lab</code> → 访问 <code>http://localhost:8000</code>
     </div>
   </section>
 
   <section>
-    <h2>Lab 框架</h2>
+    <h2>实验导航</h2>
     <div class="grid">
-      <a class="card" href="../lab/docs/norms.md">
+      <a class="card" href="agent-state-experiment/README.md">
+        <h3>Agent Core 状态依赖</h3>
+        <p>判断 Core 是否必须与会话整体绑定，或可由平台每次重建上下文。</p>
+        <span class="tag">agent-state-experiment</span>
+      </a>
+      <a class="card" href="confirmation/accepted.md">
+        <h3>需求确认沉淀</h3>
+        <p>已对齐的产品与架构决策（编号列表 + 深色 mermaid）。</p>
+        <span class="tag">confirmation</span>
+      </a>
+      <a class="card" href="temporal-experiment/README.md">
+        <h3>Temporal 工作流实验</h3>
+        <p>暂停/恢复、取消、幂等信号、崩溃恢复与心跳超时验证。</p>
+        <span class="tag">temporal-experiment</span>
+      </a>
+      <a class="card" href="tool-approval-experiment/report.md">
+        <h3>工具审批与检查点</h3>
+        <p>真实 Trae 审批、拒绝、检查点与跨进程恢复的证据。</p>
+        <span class="tag">tool-approval-experiment</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>文档与规范</h2>
+    <div class="grid">
+<a class="card" href="../../serve_agent/lab.md#文档写作规范">
         <h3>文档写作规范</h3>
         <p>文档类型、写作原则、实验记录模板、图表与命名约定。</p>
       </a>
-      <a class="card" href="../lab/CONTEXT.md">
+<a class="card" href="../../serve_agent/lab.md#词汇表">
         <h3>词汇表 CONTEXT.md</h3>
         <p>lab 术语定义；只放词汇，不放实现细节。</p>
       </a>
-      <a class="card" href="../lab/AGENTS.md">
+<a class="card" href="../../serve_agent/lab.md#实验约定">
         <h3>Lab AGENTS.md</h3>
-        <p>lab 特有 agent 约定（薄规则）。</p>
+        <p>lab 特有 agent 约定（薄规则），全局规则见仓库根。</p>
       </a>
-      <a class="card" href="../lab/docs/adr/0001-agent-lab.md">
+<a class="card" href="../../serve_agent/lab.md#文档写作规范">
         <h3>ADR-0001</h3>
-        <p>lab 结构决策记录与后果。</p>
+        <p>本次改造的决策记录与后果。</p>
       </a>
     </div>
   </section>
@@ -135,27 +162,38 @@
   <section>
     <h2>Skills 索引</h2>
     <div class="grid">
-      <a class="card" href="../skills/vendor/mattpocock-skills/grill-with-docs/SKILL.md">
+<a class="card" href="../../serve_agent/skills/vendor/mattpocock-skills/grill-with-docs/SKILL.md">
         <h3>grill-with-docs</h3>
         <p>持续访谈打磨方案/设计，并同步产出 ADR 与词汇表。</p>
         <span class="tag vendor">vendor · mattpocock</span>
       </a>
-      <a class="card" href="../skills/vendor/mattpocock-skills/grilling/SKILL.md">
+<a class="card" href="../../serve_agent/skills/vendor/mattpocock-skills/grilling/SKILL.md">
         <h3>grilling</h3>
         <p>按设计树逐轮访谈，直到达成共同理解。</p>
         <span class="tag vendor">vendor · mattpocock</span>
       </a>
-      <a class="card" href="../skills/vendor/mattpocock-skills/domain-modeling/SKILL.md">
+<a class="card" href="../../serve_agent/skills/vendor/mattpocock-skills/domain-modeling/SKILL.md">
         <h3>domain-modeling</h3>
         <p>打磨领域模型，沉淀 CONTEXT.md 与 ADR。</p>
         <span class="tag vendor">vendor · mattpocock</span>
+      </a>
+<a class="card" href="../../serve_agent/skills/docs-writing/SKILL.md">
+        <h3>docs-writing</h3>
+        <p>项目自研文档写作 skill。</p>
+        <span class="tag self">my</span>
+      </a>
+<a class="card" href="../../serve_agent/skills/review/SKILL.md">
+        <h3>review</h3>
+        <p>项目自研审查 skill。</p>
+        <span class="tag self">my</span>
       </a>
     </div>
   </section>
 </main>
 
 <footer>
-  门户模板 · 实验等 agent 产出内容不随本仓库分发，留在项目本地
+  全局工作规则：<code>AGENTS.md</code>（仓库根）· <code>~/.codex/AGENTS.md</code> · <code>~/.claude/CLAUDE.md</code>
+  <br>规则事实源与同步：<code>.dev/serve_agent/rules/</code> + <code>.dev/serve_agent/scripts/sync.ps1</code>
 </footer>
 
 </body>

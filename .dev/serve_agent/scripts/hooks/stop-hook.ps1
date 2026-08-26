@@ -25,7 +25,7 @@ function Find-RecordsDir {
     param([string]$StartDir)
     $root = Find-ProjectRoot -StartDir $StartDir
     if (-not $root) { return $null }
-    $records = Join-Path $root '.dev\private\records'
+    $records = Join-Path $root '.dev\serve_agent\records'
     if (Test-Path -LiteralPath $records) { return $records }
     return $null
 }

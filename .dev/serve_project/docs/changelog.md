@@ -1,5 +1,11 @@
 # 变更记录
 
+## [0.16.0] - 2026-08-26
+
+- 目录改名：`private/` → `serve_agent/`、`public/` → `serve_project/`（按服务对象命名）。
+- Agent Lab 去重：删除 `serve_agent/lab/` 框架目录，新建 `serve_agent/lab.md` 作为唯一指导；`serve_project/lab/` 为实验实施位置；两者由根 `AGENTS.md` 建立联系。
+- 全量更新引用（AGENTS.md / CLAUDE.md / sync.ps1 / hooks / path-memory / rules / docs / 门户）。
+
 ## [0.15.0] - 2026-08-26
 
 - 按修正后的 private/public 分级标准调整：`skills` / `scripts` / `configs` 从 public 移回 private（服务 coding agent）；`docs` 从 private 移到 public（服务项目/产出）；删除 private 内的 `AGENTS.md` / `CLAUDE.md`（规则只有项目根一份）。

@@ -10,10 +10,10 @@
   - 规则: 项目根 AGENTS.md、CLAUDE.md（唯一真源，无副本）部署到
     ~/.codex/AGENTS.md、~/.claude/CLAUDE.md（已存在时先备份）。
   - 项目: 若本仓库位于某个项目内，向项目根 .gitignore 追加
-    ".dev/private/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。
+    ".dev/serve_agent/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。
   - 使用 -DryRun 可只预览不执行。
   - 加 -Hooks 安装 path-memory：部署 hook 脚本、写入 ~/.codex/hooks.json、
-    合并 ~/.claude/settings.json 的 hooks、初始化项目 .dev/private/records。
+    合并 ~/.claude/settings.json 的 hooks、初始化项目 .dev/serve_agent/records。
 
 .EXAMPLE
   .\.dev\scripts\sync.ps1 -DryRun
@@ -102,7 +102,7 @@ function Add-ProjectGitIgnoreRules {
         return
     }
     $content = Get-Content -Raw -Encoding UTF8 $gitignore
-    $rules = @(".dev/private/", "/AGENTS.md")
+$rules = @(".dev/serve_agent/", "/AGENTS.md")
     $missing = @()
     foreach ($rule in $rules) {
         if ($content -notmatch [regex]::Escape($rule)) { $missing += $rule }
@@ -117,7 +117,7 @@ function Add-ProjectGitIgnoreRules {
     }
     $appendText = [Environment]::NewLine + [Environment]::NewLine +
         "# self-iterating-harness sync 自动追加：服务 coding agent 的内容不入库" +
-        [Environment]::NewLine + ".dev/private/" + [Environment]::NewLine +
+        [Environment]::NewLine + ".dev/serve_agent/" + [Environment]::NewLine +
         "/AGENTS.md" + [Environment]::NewLine
     [System.IO.File]::AppendAllText($gitignore, $appendText, (New-Object System.Text.UTF8Encoding($false)))
     Write-Host "  [ok] 已追加忽略规则 -> $gitignore"
@@ -242,7 +242,7 @@ function Install-ProjectRecords {
         [string]$ProjectRoot,
         [switch]$DryRun
     )
-    $recordsDir = Join-Path $ProjectRoot ".dev\private\records"
+$recordsDir = Join-Path $ProjectRoot ".dev\serve_agent\records"
     $staging = Join-Path $recordsDir ".staging"
     if ($DryRun) {
         Write-Host "  [dry-run] 初始化 $recordsDir（README + .staging）"

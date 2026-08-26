@@ -22,12 +22,12 @@ scripts/tmp/
 node_modules/
 .venv/
 
-# ---- private/public 原则 ----
-# private/ = UAC 用户辅助内容（分离区：仅本仓库跟踪）；其中属于项目本地的部分两仓库都不跟踪
-private/records/
-private/skills/docs-writing/
-private/skills/review/
-# public/ = MAC 模型辅助内容（组合区：项目仓库与本仓库都跟踪，故不在这里忽略）
+# ---- serve_agent/serve_project 原则 ----
+# serve_agent/ = 服务 coding agent（本仓库跟踪、项目忽略）；其中属于项目本地的部分两仓库都不跟踪
+serve_agent/records/
+serve_agent/skills/docs-writing/
+serve_agent/skills/review/
+# serve_project/ = agent 产出、服务项目（组合区，不在这里忽略）
 
 # ---- 通用缓存产物（两仓库都不跟踪） ----
 __pycache__/

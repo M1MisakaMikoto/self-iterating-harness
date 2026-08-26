@@ -49,7 +49,7 @@ if (-not $cwd) { $cwd = (Get-Location).Path }
 $projectRoot = Find-ProjectRoot -StartDir $cwd
 if (-not $projectRoot) { exit 0 }
 
-$recordsDir = Join-Path $projectRoot '.dev\private\records'
+$recordsDir = Join-Path $projectRoot '.dev\serve_agent\records'
 $staging = Join-Path $recordsDir '.staging'
 $slug = Get-PathSlug -Cwd $cwd -ProjectRoot $projectRoot
 
