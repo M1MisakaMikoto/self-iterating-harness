@@ -28,3 +28,9 @@ private/records/
 private/skills/docs-writing/
 private/skills/review/
 # public/ = MAC 模型辅助内容（组合区：项目仓库与本仓库都跟踪，故不在这里忽略）
+
+# ---- 通用缓存产物（两仓库都不跟踪） ----
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
