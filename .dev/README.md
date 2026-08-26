@@ -2,13 +2,13 @@
 
 自迭代 AI Coding Harness：让 coding agent 在项目工作中沉淀路径记忆，经你确认后反哺规则、skills 与配置，半自动升级自己的 AI coding 框架。
 
-> 本仓库与项目**文件混在一起、仓库各自独立**：harness 仓库 git 元数据在 `<项目>/.git-harness`，工作根指向项目根（与项目仓库的根在同一个目录）。harness 文件按 **private/public 原则**收纳在 `.dev/`：**`private/` = UAC 用户辅助内容（服务 coding agent）**（本仓库跟踪、项目忽略），**`public/` = MAC 模型辅助内容（服务项目/产出）**（项目只跟踪其中的实验与计划文件）。
+> 本仓库与项目**文件混在一起、仓库各自独立**：harness 仓库 git 元数据在 `<项目>/.git-harness`，工作根指向项目根（与项目仓库的根在同一个目录）。harness 文件按 **private/public 原则**收纳在 `.dev/`：**`private/` = 服务 coding agent 的内容**（本仓库跟踪、项目忽略），**`public/` = agent 产出、服务项目的内容**（项目只跟踪其中的实验与计划文件）。UAC/MAC 是规则提示词内容的分类，不用于目录。
 
 ## 自迭代闭环
 
 - path-memory：项目工作中沉淀探索记录（探索/纠正/碰壁/跑通，经你确认后写入 `private/records/`）。
 - 规则演进：记录反哺 UAC/MAC 规则；换模型时按 `private/rules/ABLATION.md` 对 MAC 逐条消融。
-- 部署：`public/scripts/sync.ps1` 把演进后的规则、skills、配置部署到本机生效，形成闭环。
+- 部署：`private/scripts/sync.ps1` 把演进后的规则、skills、配置部署到本机生效，形成闭环。
 
 自迭代不依赖额外逻辑，闭环即上述已有机制。
 
@@ -22,14 +22,14 @@
 ├─ AGENTS.md / CLAUDE.md       # 规则唯一真源（harness 跟踪、项目忽略，无副本无同步）
 └─ .dev/                       # harness 文件混在这里
    ├─ README.md / .gitignore   # 根入口（README 仓库主页展示；.gitignore git 机制）
-   ├─ private/                 # UAC 用户辅助内容（服务 coding agent；本仓库跟踪、项目忽略）
+   ├─ private/                 # 服务 coding agent（本仓库跟踪、项目忽略）
    │  ├─ rules/                # 规则模板 + ABLATION（规范真源在项目根 AGENTS.md/CLAUDE.md）
    │  ├─ skills/               # my/ vendor/（harness）+ docs-writing/ review/（项目私有，不跟踪）
    │  ├─ scripts/              # sync / validate / hooks / hgit
    │  ├─ configs/              # 工具配置模板
    │  ├─ lab/                  # Agent Lab 框架（规范/词汇表/ADR）
    │  └─ records/              # 路径记忆（两仓库都不跟踪）
-   └─ public/                  # MAC 模型辅助内容（服务项目/产出）
+   └─ public/                  # agent 产出、服务项目
       ├─ docs/                 # 使用说明与变更记录
       ├─ preview/              # 门户模板
       ├─ plans/                # 计划（框架 README + 项目计划）
@@ -47,9 +47,9 @@
 
 ```powershell
 # 在本仓库根（<项目>/.dev）执行
-.\public\scripts\validate.ps1            # 校验 skills 结构
-.\public\scripts\sync.ps1 -Hooks         # 部署到本机 + 安装 path-memory hooks
-.\public\scripts\sync.ps1 -DryRun        # 预览
+.\private\scripts\validate.ps1            # 校验 skills 结构
+.\private\scripts\sync.ps1 -Hooks         # 部署到本机 + 安装 path-memory hooks
+.\private\scripts\sync.ps1 -DryRun        # 预览
 # harness 仓库 git（在项目根执行）
 .\dev\public\scripts\hgit.ps1 status
 ```
@@ -64,8 +64,8 @@
 ## 约定（摘要）
 
 - 每个 skill 独立目录，根目录必须有 `SKILL.md`，frontmatter 包含 `name` 与 `description`。
-- 第三方内容一律进 `public/skills/vendor/<来源>/`，并维护 `SOURCE.md`（来源 URL、commit、许可证、本地修改）。
-- `public/configs/` 只放模板与占位符，真实密钥永不入库。
-- 提交前运行 `public/scripts/validate.ps1`；更新第三方前运行 `public/scripts/pull-vendor.ps1`。
+- 第三方内容一律进 `private/skills/vendor/<来源>/`，并维护 `SOURCE.md`（来源 URL、commit、许可证、本地修改）。
+- `private/configs/` 只放模板与占位符，真实密钥永不入库。
+- 提交前运行 `private/scripts/validate.ps1`；更新第三方前运行 `private/scripts/pull-vendor.ps1`。
 
-详细说明见 [docs/usage.md](private/docs/usage.md)；仓库内工作规范见 [AGENTS.md](AGENTS.md)。
+详细说明见 [docs/usage.md](public/docs/usage.md)。

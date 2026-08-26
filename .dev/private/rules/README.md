@@ -18,10 +18,10 @@
 
 ## private/public 分级标准（必读，勿凭记忆）
 
-- `private/` = UAC 用户辅助内容，**服务 coding agent**（本仓库跟踪、项目忽略）：
-  `rules`、`skills`、`scripts`、`configs`、`lab`（框架）、`records`。
-- `public/` = MAC 模型辅助内容，**服务项目/产出**：
-  `docs`、`preview`、`plans`、`lab`（实验）。
+- 目录分类按**服务对象**，与 UAC/MAC 无关：
+  - `private/` = **服务 coding agent**（本仓库跟踪、项目忽略）：`rules`、`skills`、`scripts`、`configs`、`lab`（框架）、`records`。
+  - `public/` = **agent 产出、服务项目**：`docs`、`preview`、`plans`、`lab`（实验）。
+- **UAC / MAC 是规则/提示词内容的分类**（见项目根 `AGENTS.md` / `CLAUDE.md` 内部分区；换模型对 MAC 做 `ABLATION.md` 消融），**不是目录分类**，不要把 UAC/MAC 标签贴在目录上。
 - `AGENTS.md` / `CLAUDE.md`：只有项目根一份（规则唯一真源，由 harness 仓库跟踪），`.dev/` 内不放。
 - 项目仓库不追踪 private（服务 coding agent 的内容，如 skills/scripts/configs）；项目仓库只跟踪 `.dev/public/lab/**` 与两个项目计划文件。
-- 新增内容先按"服务谁"分类：给 coding agent 用的进 private，服务项目/产出（说明、门户、计划、实验）进 public。
+- 新增内容先按"服务谁"分类：给 coding agent 用的进 private，agent 产出/服务项目的进 public。
