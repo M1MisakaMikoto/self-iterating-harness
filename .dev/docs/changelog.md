@@ -1,5 +1,13 @@
 # 变更记录
 
+## [0.9.0] - 2026-08-26
+
+- 新增 path-memory 探索路径记忆：hook 驱动，agent 判断任务带探索性质时自行启用（创建会话标记），任务结束后 Stop hook 自动发起总结对话，草稿经用户确认后才写入 `.dev/private/records/`。
+- 新增 hook 脚本：`scripts/hooks/session-start.ps1`（注入会话 ID/待确认草稿/历史摘要）、`stop-hook.ps1`（触发续写总结）、`search-records.ps1`（按 tag/关键词检索）。
+- 新增 `skills/my/path-memory` skill：启用判断、总结模板、tag 词表、检索与比对方法。
+- `sync.ps1` 新增 `-Hooks` 一键安装：部署 hook 脚本、写入 `~/.codex/hooks.json`、合并 `~/.claude/settings.json`、初始化项目 records 目录。
+- UAC 新增第 10 条：写入探索记录前必须先经用户确认；MAC 调整第 4 条（纠正由 hook 捕获）、新增第 9 条（探索性任务启用路径记忆）。
+
 ## [0.8.0] - 2026-08-26
 
 - UAC 新增"报告结构"：报告问题或任务结果时按 4 点结构——能做到什么 / 为什么能做到 / 什么情况下做不到 / 怎么确保说到的都做到了。

@@ -28,6 +28,27 @@ cd ai-coding-configs
 
 即：服务于 coding agent 的内容（`.dev/private/`）与项目根 `AGENTS.md` 不记录；`.dev/public/`（lab 等 agent 产出与项目内容）不被忽略、自动记录。
 
+## 探索路径记忆（path-memory hooks）
+
+```powershell
+# 一键安装 hooks：部署脚本 + 写入 Codex hooks.json + 合并 Claude settings.json + 初始化项目 records 目录
+.\\.dev\\scripts\\sync.ps1 -Hooks
+# 先预览
+.\\.dev\\scripts\\sync.ps1 -Hooks -DryRun
+```
+
+工作机制：
+
+- 默认不动作。agent 判断任务带**探索性质**（新领域/方案未定/多路径尝试/预期碰壁）时，创建 `.dev/private/records/.staging/.flag-<会话ID>` 启用。
+- 任务结束 Stop hook 检测到标记，自动发起一次总结对话，agent 按 path-memory skill 撰写草稿到 `.staging/`。
+- 草稿经用户确认后才写入 `.dev/private/records/<路径slug>.md`；拒绝则删除。
+
+注意：
+
+- Codex 交互模式首次使用需在 `/hooks` 中审查并信任新 hook；脚本内容变更后也需重新信任。
+- 无头/自动化模式（`codex exec`）可加 `--dangerously-bypass-hook-trust` 在本次调用中跳过信任。
+- 记录、草稿、标记均在 `.dev/private/`（git 忽略），不入项目仓库，不随 config 仓库同步；换机器时本机重跑 `sync.ps1 -Hooks` 即可重建机制，记录需自行迁移。
+
 ### 内容边界
 
 - **预制内容完整记录**：AGENTS.md / CLAUDE.md / skills / 配置模板等预先编写的内容完整保留。

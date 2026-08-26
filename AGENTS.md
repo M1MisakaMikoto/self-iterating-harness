@@ -73,5 +73,6 @@
 .\\.dev\\scripts\\validate.ps1        # 校验 skills 结构
 .\\.dev\\scripts\\sync.ps1            # 部署到本机 ~/.codex、~/.claude
 .\\.dev\\scripts\\sync.ps1 -DryRun    # 预览同步
+.\\.dev\\scripts\\sync.ps1 -Hooks     # 额外安装 path-memory hooks 与记录目录
 .\\.dev\\scripts\\pull-vendor.ps1     # 按 manifest 拉取第三方 skills
 ```
