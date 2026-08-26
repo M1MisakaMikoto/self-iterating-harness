@@ -65,5 +65,5 @@ flowchart LR
 
 ## 6. 相关规范引用
 
-- ADR 格式：`ai-coding-configs/skills/vendor/mattpocock-skills/domain-modeling/ADR-FORMAT.md`
-- 词汇表格式：`ai-coding-configs/skills/vendor/mattpocock-skills/domain-modeling/CONTEXT-FORMAT.md`
+- ADR 格式：`self-iterating-harness/.dev/skills/vendor/mattpocock-skills/domain-modeling/ADR-FORMAT.md`
+- 词汇表格式：`self-iterating-harness/.dev/skills/vendor/mattpocock-skills/domain-modeling/CONTEXT-FORMAT.md`

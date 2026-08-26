@@ -1,11 +1,13 @@
 # 使用说明
 
+本仓库是自迭代 AI Coding Harness：配置是"现状"，path-memory 路径记忆与规则消融是"演进"，sync 是"部署"。
+
 ## 首次使用
 
 ```powershell
 # 克隆到本地（示例）
-git clone https://github.com/<USER>/ai-coding-configs.git
-cd ai-coding-configs
+git clone https://github.com/<USER>/self-iterating-harness.git
+cd self-iterating-harness
 
 # 校验结构
 .\\.dev\\scripts\\validate.ps1
@@ -21,7 +23,7 @@ cd ai-coding-configs
 `sync.ps1` 还会向**所在项目**的根 `.gitignore` 追加忽略规则（仅当不存在时）：
 
 ```text
-# ai-coding-configs sync 自动追加
+# self-iterating-harness sync 自动追加
 .dev/private/
 /AGENTS.md
 ```
@@ -88,7 +90,7 @@ New-Item -ItemType Junction -Path "$HOME\.codex\skills" -Target "<仓库路径>\
 在 GitHub 新建空仓库（不要勾选初始化 README），然后：
 
 ```powershell
-git remote add origin https://github.com/<USER>/ai-coding-configs.git
+git remote add origin https://github.com/<USER>/self-iterating-harness.git
 git branch -M main
 git push -u origin main
 ```
@@ -98,7 +100,7 @@ git push -u origin main
 在 Gitee 建同名仓库后，把 GitHub 作为 origin、Gitee 作为 mirror：
 
 ```powershell
-git remote add mirror https://gitee.com/<USER>/ai-coding-configs.git
+git remote add mirror https://gitee.com/<USER>/self-iterating-harness.git
 git push mirror --all
 git push mirror --tags
 ```

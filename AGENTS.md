@@ -4,7 +4,7 @@
 
 ## 仓库用途
 
-这是个人 AI 编程配置仓库，所有内容统一放在 `.dev/` 下：
+这是自迭代 AI Coding Harness 仓库：所有内容统一放在 `.dev/` 下，自迭代闭环由 path-memory 路径记忆、UAC/MAC 规则与消融实验、lab 实验、sync 部署构成：
 
 - 全局工作规范（`.dev/rules/`，完整记录）
 - 自研 skills（`.dev/skills/my/`）

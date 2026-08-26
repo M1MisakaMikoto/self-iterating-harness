@@ -1,6 +1,8 @@
-# ai-coding-configs
+# self-iterating-harness
 
-个人 AI 编程配置仓库：AGENTS/CLAUDE 全局规则、自研与第三方 skills、工具配置模板与配套脚本。
+自迭代 AI Coding Harness：让 coding agent 在项目工作中沉淀路径记忆，经你确认后反哺规则、skills 与配置，半自动升级自己的 AI coding 框架。
+
+自迭代就是这套机制本身，不依赖额外逻辑：path-memory 记录探索/纠正/跑通 → 规则按 UAC/MAC 分区并支持消融实验 → lab 实验验证框架想法 → sync 一键部署生效。
 
 > 本文件只是仓库入口（GitHub 主页展示）。详细说明、目录结构与使用方式见 [.dev/README.md](.dev/README.md)。
 

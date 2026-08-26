@@ -12,7 +12,7 @@
 1. **门户采用零依赖静态 HTML**（`index.html`）：单文件、内嵌 CSS/JS、无外部 CDN、无构建工具；双击或本地 HTTP 服务即可打开。
 2. **文档规范统一**：`docs/norms.md` 定义写作约定；`CONTEXT.md` 作为词汇表；`docs/adr/` 记录难以逆转的决策。
 3. **现有实验目录保留原位不动**：门户只做入口链接，避免移动/改写已有证据与结论。
-4. **全局工作规则双轨部署**：规则事实源在 `ai-coding-configs/rules/`，通过 `sync.ps1` 部署到 `~/.codex/AGENTS.md` 与 `~/.claude/CLAUDE.md`；仓库根 `AGENTS.md` 保留同一份规则，保证项目内形态贴合。
+4. **全局工作规则双轨部署**：规则事实源在 `self-iterating-harness/.dev/rules/`，通过 `sync.ps1` 部署到 `~/.codex/AGENTS.md` 与 `~/.claude/CLAUDE.md`；仓库根 `AGENTS.md` 保留同一份规则，保证项目内形态贴合。
 
 ## 后果
 

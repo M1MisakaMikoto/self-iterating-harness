@@ -4,7 +4,7 @@
 
 ## 这是什么仓库
 
-个人 AI 编程配置库，所有内容在 `.dev/` 下：自研 skills（`.dev/skills/my/`）、第三方 skills（`.dev/skills/vendor/`）、Codex/Claude Code/MCP 配置模板（`.dev/configs/`）、全局规则（`.dev/rules/`）、Lab 框架与门户模板（`.dev/lab/`、`.dev/preview/`），以及配套 PowerShell 脚本（`.dev/scripts/`）。仓库本身没有业务代码，也不含密钥。
+自迭代 AI Coding Harness：个人 AI 编程框架（自研/第三方 skills、Codex/Claude Code/MCP 配置模板、全局规则、Lab 框架与门户模板、配套脚本）与自迭代机制（path-memory 路径记忆、规则消融、lab 实验），所有内容在 `.dev/` 下，仓库本身没有业务代码，也不含密钥。
 
 ## 布局速览
 

@@ -116,7 +116,7 @@ function Add-ProjectGitIgnoreRules {
         return
     }
     $appendText = [Environment]::NewLine + [Environment]::NewLine +
-        "# ai-coding-configs sync 自动追加：服务 coding agent 的内容不入库" +
+        "# self-iterating-harness sync 自动追加：服务 coding agent 的内容不入库" +
         [Environment]::NewLine + ".dev/private/" + [Environment]::NewLine +
         "/AGENTS.md" + [Environment]::NewLine
     [System.IO.File]::AppendAllText($gitignore, $appendText, (New-Object System.Text.UTF8Encoding($false)))

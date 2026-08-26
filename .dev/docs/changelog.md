@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.10.0] - 2026-08-26
+
+- 仓库重定位为"自迭代 AI Coding Harness"并更名 `self-iterating-harness`：自迭代即已有机制（path-memory 路径记忆、UAC/MAC 规则 + ABLATION 消融、lab 实验、sync 部署），不新增额外逻辑。
+- 全量更新引用路径（项目 `.gitignore`、lab 门户链接、文档路径、usage 占位 URL、sync 注释）。
+
 ## [0.9.1] - 2026-08-26
 
 - 调整记录确认点：由"草稿 → 确认 → 写入"改为"先确认 → 直接写入"。Stop hook 提醒后 agent 用 2-3 行要点询问，确认后直接写入 `records/` 并报告位置；不生成草稿、不二次确认，减少 token 消耗。
