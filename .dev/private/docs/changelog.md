@@ -1,5 +1,12 @@
 # 变更记录
 
+## [0.14.0] - 2026-08-26
+
+- **仓库独立、根同目录**：harness 仓库 git 元数据移至项目根 `.git-harness`，工作根指向项目根（与项目仓库同目录）；harness 文件仍混在 `.dev/`（private=UAC / public=MAC）。
+- 根 `AGENTS.md` / `CLAUDE.md` 由 harness 仓库直接跟踪（无副本、无项目内同步）。
+- 分离规则移到各仓库 `info/exclude`（项目忽略 `.dev/*` 仅保留 public、忽略 AGENTS/CLAUDE；harness 忽略项目代码与自身 gitdir），根 `.gitignore` 只放通用规则。
+- 新增 `hgit.ps1`：在项目根快捷运行 harness 仓库 git。
+
 ## [0.13.1] - 2026-08-26
 
 - 规则去副本：`AGENTS.md` / `CLAUDE.md` 就是项目根的**唯一真源**，无副本、不做项目内同步；`private/rules/` 只保留模板与 ABLATION。

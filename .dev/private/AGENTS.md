@@ -29,11 +29,12 @@
 
 ## 与项目仓库的分离组合
 
-- 本仓库 git 元数据在 `<项目>/.dev/.git`，项目仓库 git 元数据在 `<项目>/.git`，两者工作区混合在同一目录。
-- 靠 ignore 配置分离：
-  - 项目 `.gitignore`：`.dev/*` + `!.dev/public/**`（项目只记录业务代码与 `.dev/public/`）。
-  - 本仓库 `.gitignore`：忽略 `private/records/`、`private/skills/docs-writing/`、`private/skills/review/`（项目本地）；`public/` 不忽略（组合区，两仓库都跟踪）。
-- 在本仓库根（`<项目>/.dev/`）执行 `git` 命令操作本仓库；在项目根执行 `git` 命令操作项目仓库。
+- 两个仓库**独立**：项目仓库 git 元数据在 `<项目>/.git`，本仓库在 `<项目>/.git-harness`（工作根都指向项目根，同目录）；harness 文件混在 `.dev/`（private=UAC / public=MAC）。
+- 文件混在同一目录，靠各仓库 `info/exclude` 分离：
+  - 项目 `info/exclude`：`.dev/*` + `!.dev/public/**` + `/AGENTS.md` + `/CLAUDE.md`（项目只记录业务代码与 `.dev/public/`）。
+  - 本仓库 `info/exclude`：项目代码（`/src/`、`/tests/` 等）与 `/.git-harness/`；`.dev/.gitignore` 再排除 `private/records/`、`private/skills/docs-writing/`、`private/skills/review/`。
+- 根 `.gitignore` 只放通用规则，不做分离（共享工作区，避免规则互相泄漏）。
+- git 用法：项目仓库在项目根直接 `git`；本仓库在项目根 `git --git-dir=.git-harness <命令>` 或 `.\dev\public\scripts\hgit.ps1 <命令>`。
 
 ## 内容边界
 
@@ -83,4 +84,6 @@
 .\public\scripts\sync.ps1 -DryRun    # 预览同步
 .\public\scripts\sync.ps1 -Hooks     # 额外安装 path-memory hooks 与记录目录
 .\public\scripts\pull-vendor.ps1     # 按 manifest 拉取第三方 skills
+# 在项目根执行 harness 仓库 git：
+git --git-dir=.git-harness status    # 或 .\dev\public\scripts\hgit.ps1 status
 ```
