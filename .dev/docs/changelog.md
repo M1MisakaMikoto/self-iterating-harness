@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.10.1] - 2026-08-26
+
+- 仓库移出项目目录，与项目同级放置（`D:\dev\projects\self-iterating-harness` 与 `D:\dev\projects\<项目>` 并列），项目内不再嵌套 config 仓库。
+- 内部文档路径改为仓库相对 `.dev/...`；项目 lab 门户链接与忽略规则同步更新。
+
 ## [0.10.0] - 2026-08-26
 
 - 仓库重定位为"自迭代 AI Coding Harness"并更名 `self-iterating-harness`：自迭代即已有机制（path-memory 路径记忆、UAC/MAC 规则 + ABLATION 消融、lab 实验、sync 部署），不新增额外逻辑。

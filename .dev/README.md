@@ -52,8 +52,8 @@
 
 ## 与项目仓库的关系
 
-- 本仓库可放在任意项目内（如 `self-iterating-harness/` 子目录），其根 `README.md` 与项目根 `README.md` 互不影响（不同目录、不同仓库）。
-- `sync.ps1` 会把服务 coding agent 的忽略规则（`.dev/private/`、`/AGENTS.md`）追加到项目 `.gitignore`（仅当不存在时）；`.dev/public/` 内容默认不被忽略、自动记录。
+- 本仓库与项目**同级放置**（如 `D:\dev\projects\self-iterating-harness` 与 `D:\dev\projects\<项目>` 并列）；也可临时放进项目内。根 `README.md` 与项目根 `README.md` 互不影响（不同目录、不同仓库）。
+- 放在项目内时，`sync.ps1` 会把服务 coding agent 的忽略规则（`.dev/private/`、`/AGENTS.md`）追加到项目 `.gitignore`（仅当不存在时）；同级放置时该步骤自动跳过，由各项目自行维护 `.gitignore`。`.dev/public/` 内容默认不被忽略、自动记录。
 
 详细说明见 [.dev/docs/usage.md](docs/usage.md)。
 
