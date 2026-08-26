@@ -15,4 +15,13 @@
 
 - **UAC（用户辅助内容）**：指导如何向用户汇报与交互，跨模型稳定，更换模型时不变。
 - **MAC（模型辅助内容）**：增强工作能力的方法论与纪律，与模型相关，更换模型时按 `ABLATION.md` 做消融实验。
-- **存放位置（private/public 原则）**：`private/` = UAC 用户辅助内容；`public/` = MAC 模型辅助内容。本目录（rules 模板）属 UAC，位于 `private/rules/`。
+
+## private/public 分级标准（必读，勿凭记忆）
+
+- `private/` = UAC 用户辅助内容，**服务 coding agent**（本仓库跟踪、项目忽略）：
+  `rules`、`skills`、`scripts`、`configs`、`lab`（框架）、`records`。
+- `public/` = MAC 模型辅助内容，**服务项目/产出**：
+  `docs`、`preview`、`plans`、`lab`（实验）。
+- `AGENTS.md` / `CLAUDE.md`：只有项目根一份（规则唯一真源，由 harness 仓库跟踪），`.dev/` 内不放。
+- 项目仓库不追踪 private（服务 coding agent 的内容，如 skills/scripts/configs）；项目仓库只跟踪 `.dev/public/lab/**` 与两个项目计划文件。
+- 新增内容先按"服务谁"分类：给 coding agent 用的进 private，服务项目/产出（说明、门户、计划、实验）进 public。

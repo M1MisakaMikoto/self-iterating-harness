@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.15.0] - 2026-08-26
+
+- 按修正后的 private/public 分级标准调整：`skills` / `scripts` / `configs` 从 public 移回 private（服务 coding agent）；`docs` 从 private 移到 public（服务项目/产出）；删除 private 内的 `AGENTS.md` / `CLAUDE.md`（规则只有项目根一份）。
+- 分级标准写入 `private/rules/README.md`，不再凭记忆。
+
 ## [0.14.0] - 2026-08-26
 
 - **仓库独立、根同目录**：harness 仓库 git 元数据移至项目根 `.git-harness`，工作根指向项目根（与项目仓库同目录）；harness 文件仍混在 `.dev/`（private=UAC / public=MAC）。

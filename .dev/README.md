@@ -2,7 +2,7 @@
 
 自迭代 AI Coding Harness：让 coding agent 在项目工作中沉淀路径记忆，经你确认后反哺规则、skills 与配置，半自动升级自己的 AI coding 框架。
 
-> 本仓库与项目**文件混在一起、仓库各自独立**：harness 仓库 git 元数据在 `<项目>/.git-harness`，工作根指向项目根（与项目仓库的根在同一个目录）。harness 文件按 **private/public 原则**收纳在 `.dev/`：**`private/` = UAC 用户辅助内容**（本仓库跟踪、项目忽略），**`public/` = MAC 模型辅助内容**（项目与本仓库都跟踪）。
+> 本仓库与项目**文件混在一起、仓库各自独立**：harness 仓库 git 元数据在 `<项目>/.git-harness`，工作根指向项目根（与项目仓库的根在同一个目录）。harness 文件按 **private/public 原则**收纳在 `.dev/`：**`private/` = UAC 用户辅助内容（服务 coding agent）**（本仓库跟踪、项目忽略），**`public/` = MAC 模型辅助内容（服务项目/产出）**（项目只跟踪其中的实验与计划文件）。
 
 ## 自迭代闭环
 
@@ -22,15 +22,17 @@
 ├─ AGENTS.md / CLAUDE.md       # 规则唯一真源（harness 跟踪、项目忽略，无副本无同步）
 └─ .dev/                       # harness 文件混在这里
    ├─ README.md / .gitignore   # 根入口（README 仓库主页展示；.gitignore git 机制）
-   ├─ private/                 # UAC 用户辅助内容（本仓库跟踪；项目忽略）
-   │  ├─ AGENTS.md / CLAUDE.md # 仓库工作指南
+   ├─ private/                 # UAC 用户辅助内容（服务 coding agent；本仓库跟踪、项目忽略）
    │  ├─ rules/                # 规则模板 + ABLATION（规范真源在项目根 AGENTS.md/CLAUDE.md）
-   │  ├─ docs/                 # 使用说明与变更记录
+   │  ├─ skills/               # my/ vendor/（harness）+ docs-writing/ review/（项目私有，不跟踪）
+   │  ├─ scripts/              # sync / validate / hooks / hgit
+   │  ├─ configs/              # 工具配置模板
    │  ├─ lab/                  # Agent Lab 框架（规范/词汇表/ADR）
-   │  ├─ skills/docs-writing/ skills/review/   # 项目私有 skills（两仓库都不跟踪）
    │  └─ records/              # 路径记忆（两仓库都不跟踪）
-   └─ public/                  # MAC 模型辅助内容（项目与本仓库都跟踪——组合区）
-      ├─ skills/ configs/ scripts/ preview/ plans/   # harness 的 MAC 内容
+   └─ public/                  # MAC 模型辅助内容（服务项目/产出）
+      ├─ docs/                 # 使用说明与变更记录
+      ├─ preview/              # 门户模板
+      ├─ plans/                # 计划（框架 README + 项目计划）
       └─ lab/                  # 项目实验 + 门户
 ```
 
