@@ -22,6 +22,10 @@ scripts/tmp/
 node_modules/
 .venv/
 
-# ---- 项目侧内容：与项目仓库混合在同一目录，由项目仓库跟踪/管理，本仓库不跟踪 ----
-private/
+# ---- 项目侧内容（与项目仓库混合在同一目录） ----
+# public/：服务项目/产出，由项目仓库跟踪，本仓库不跟踪
 public/
+# private/ 内属于项目本地的部分（路径记忆、项目私有 skills），本仓库不跟踪
+private/records/
+private/skills/docs-writing/
+private/skills/review/
