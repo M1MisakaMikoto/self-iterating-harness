@@ -56,17 +56,6 @@ $slug = Get-PathSlug -Cwd $cwd -ProjectRoot $projectRoot
 $lines = [System.Collections.Generic.List[string]]::new()
 $lines.Add("[path-memory] 会话ID=$sessionId 工作路径=$slug")
 
-$pending = @()
-if (Test-Path -LiteralPath $staging) {
-    $pending = @(Get-ChildItem -LiteralPath $staging -File | Where-Object {
-        $_.Name -like '*.md.candidate' -or $_.Name -like '*.update.md'
-    } | Select-Object -ExpandProperty Name)
-}
-if ($pending.Count -gt 0) {
-    $lines.Add("待确认记录草稿（上次任务未确认）：$($pending -join ', ')")
-    $lines.Add("请先向用户确认这些草稿是否写入 records/；用户确认才写，拒绝则删除。")
-}
-
 $recordFile = Join-Path $recordsDir "$slug.md"
 if (Test-Path -LiteralPath $recordFile) {
     $lines.Add("本路径已有探索记录 records\$slug.md，要点：")

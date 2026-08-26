@@ -75,18 +75,15 @@ Set-Content -LiteralPath $attemptFile -Value ($attempts + 1) -Encoding UTF8
 
 $projectRoot = Find-ProjectRoot -StartDir $cwd
 $slug = Get-PathSlug -Cwd $cwd -ProjectRoot $projectRoot
-$recordFile = Join-Path $recordsDir "$slug.md"
-$draftName = if (Test-Path -LiteralPath $recordFile) { "$slug.update.md" } else { "$slug.md.candidate" }
-$draftPath = Join-Path $staging $draftName
 $donePath = Join-Path $staging ".done-$sessionId"
 
 $reason = @"
-任务已结束，本次会话启用了路径记忆。请立即做一次探索总结（不要继续实现任何功能）：
-1. 以本会话实际内容为素材，撰写记录草稿：若 records\$slug.md 不存在则新建 $draftPath；若已存在则写更新草稿 $draftPath，并列出相对旧记录的改动点。
-2. 草稿必须包含 frontmatter（path / status / tags / created / updated）与以下分区：目标方向、已确认决策、用户纠正、探索路径、碰壁点（含原因）、跑通方案（步骤与依据）、边界条件、未决问题。tag 从 records/README.md 词表选择。
-3. 写完后创建完成标记：$donePath
-4. 最后向用户展示草稿要点，询问是否正式写入 records\（新增或更新）；用户确认才写，拒绝则删除草稿与标记。
-结构细节与搜索方法见 path-memory skill。
+任务已结束，本次会话启用了路径记忆。请先向用户确认是否记录本次探索（不要先生成草稿）：
+1. 用 2-3 行要点向用户说明将记录的内容：目标方向、关键探索/碰壁/跑通、建议 tags（从 records/README.md 词表选择，不要自创新 tag）、以及将写入 records\$slug.md 是新增还是更新。
+2. 询问后立即创建完成标记：$donePath（避免 hook 重复询问）。
+3. 用户确认后：直接按 path-memory skill 模板写入 records\$slug.md，并向用户报告文件位置；用户拒绝则跳过，不写入、不创建任何草稿。
+4. 不要生成完整草稿、不要展示完整内容、不要二次确认。
+结构细节见 path-memory skill。
 "@
 
 [pscustomobject]@{

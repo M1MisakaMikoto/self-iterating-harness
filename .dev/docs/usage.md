@@ -40,8 +40,8 @@ cd ai-coding-configs
 工作机制：
 
 - 默认不动作。agent 判断任务带**探索性质**（新领域/方案未定/多路径尝试/预期碰壁）时，创建 `.dev/private/records/.staging/.flag-<会话ID>` 启用。
-- 任务结束 Stop hook 检测到标记，自动发起一次总结对话，agent 按 path-memory skill 撰写草稿到 `.staging/`。
-- 草稿经用户确认后才写入 `.dev/private/records/<路径slug>.md`；拒绝则删除。
+- 任务结束 Stop hook 检测到标记，发起一次确认对话；agent 用 2-3 行要点询问是否记录。
+- 你确认后 agent 直接写入 `.dev/private/records/<路径slug>.md` 并报告位置；拒绝则不写。不生成草稿、不二次确认。
 
 注意：
 
