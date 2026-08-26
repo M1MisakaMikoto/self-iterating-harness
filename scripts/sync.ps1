@@ -3,11 +3,11 @@
   将本仓库的 skills 与配置模板部署到本机 Codex / Claude 目录。
 
 .DESCRIPTION
-  - skills: 将 .dev/skills/my 与 .dev/skills/vendor 下含 SKILL.md 的目录复制到
+  - skills: 将 skills/my 与 skills/vendor 下含 SKILL.md 的目录复制到
     ~/.codex/skills 与 ~/.claude/skills（覆盖同名目录）。
-  - 配置: .dev/configs/codex、.dev/configs/claude 下的模板只在目标文件不存在时复制，
+  - 配置: configs/codex、configs/claude 下的模板只在目标文件不存在时复制，
     避免覆盖你本机已修改的配置。
-  - 规则: .dev/rules/AGENTS.global.md、CLAUDE.global.md 部署到
+  - 规则: rules/AGENTS.global.md、CLAUDE.global.md 部署到
     ~/.codex/AGENTS.md、~/.claude/CLAUDE.md（已存在时先备份）。
   - 项目: 若本仓库位于某个项目内，向项目根 .gitignore 追加
     ".dev/private/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。

@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.11.0] - 2026-08-26
+
+- 仓库根迁移至项目 `.dev/`：harness 与项目**混合在同一目录**，项目 `.git` 与 harness `.dev/.git` 两个 git 仓库同时可见，靠 ignore 配置分离组合（项目忽略 `.dev/*` 仅保留 `public/**`，本仓库忽略 `private/`、`public/`）。
+- 内部路径全部改为新根相对路径（`rules/`、`skills/`、`configs/`、`scripts/`、`lab/` 等）；项目 lab 门户链接、AGENTS 权威路径同步更新。
+
 ## [0.10.2] - 2026-08-26
 
 - 恢复与项目"混合在同一目录"的布局：harness 仓库嵌套于项目根（`<项目>/self-iterating-harness/`），与项目文件同目录；撤销同级放置方案。
