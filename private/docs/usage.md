@@ -16,7 +16,7 @@ cd <项目>/.dev            # 本仓库与项目混合，根即项目 .dev/
 .\public\scripts\sync.ps1
 ```
 
-`sync.ps1` 会把 `private/rules/AGENTS.global.md`、`private/rules/CLAUDE.global.md` 部署为
+`sync.ps1` 会把项目根 `AGENTS.md`、`CLAUDE.md`（规则唯一真源，无副本）部署为
 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md`，对所有项目生效。目标文件已存在时会先备份为
 `.bak-<时间戳>` 再覆盖。
 

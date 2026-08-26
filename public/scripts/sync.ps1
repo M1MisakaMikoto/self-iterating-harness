@@ -7,7 +7,7 @@
     ~/.codex/skills 与 ~/.claude/skills（覆盖同名目录）。
   - 配置: configs/codex、configs/claude 下的模板只在目标文件不存在时复制，
     避免覆盖你本机已修改的配置。
-  - 规则: private/rules/AGENTS.global.md、CLAUDE.global.md 部署到
+  - 规则: 项目根 AGENTS.md、CLAUDE.md（唯一真源，无副本）部署到
     ~/.codex/AGENTS.md、~/.claude/CLAUDE.md（已存在时先备份）。
   - 项目: 若本仓库位于某个项目内，向项目根 .gitignore 追加
     ".dev/private/" 与 "/AGENTS.md" 忽略规则（仅当不存在时）。
@@ -276,8 +276,8 @@ Copy-Templates (Join-Path $RepoRoot "configs\claude") $ClaudeConfigDir
 
 Write-Step "同步全局规则 (~/.codex/AGENTS.md, ~/.claude/CLAUDE.md)"
 $globalRules = @(
-    @{ Source = "..\private\rules\AGENTS.global.md"; Target = (Join-Path $HOME ".codex\AGENTS.md") },
-    @{ Source = "..\private\rules\CLAUDE.global.md"; Target = (Join-Path $HOME ".claude\CLAUDE.md") }
+    @{ Source = "..\..\AGENTS.md"; Target = (Join-Path $HOME ".codex\AGENTS.md") },
+    @{ Source = "..\..\CLAUDE.md"; Target = (Join-Path $HOME ".claude\CLAUDE.md") }
 )
 foreach ($rule in $globalRules) {
     $src = Join-Path $RepoRoot $rule.Source

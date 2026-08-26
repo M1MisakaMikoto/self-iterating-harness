@@ -1,9 +1,8 @@
-# rules — 个人全局工作规范（完整记录）+ 规则模板
+# rules — 规则模板与消融模板
 
-本目录**完整记录**个人全局工作规范（预制内容）：
+本目录放规则相关的**模板**（预制内容）：
 
-- `AGENTS.global.md`：Codex 全局规则，由 `sync.ps1` 部署到 `~/.codex/AGENTS.md`。
-- `CLAUDE.global.md`：Claude Code 全局规则，由 `sync.ps1` 部署到 `~/.claude/CLAUDE.md`。
+- 规范**唯一真源**在项目根 `AGENTS.md` / `CLAUDE.md`（无副本、不做项目内同步），由 `sync.ps1` 部署到 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md`。
 - `AGENTS.template.md`：新建项目时的规则模板（框架）。
 - `ABLATION.md`：更换模型时对 MAC 逐条做消融实验的模板。
 
@@ -16,4 +15,4 @@
 
 - **UAC（用户辅助内容）**：指导如何向用户汇报与交互，跨模型稳定，更换模型时不变。
 - **MAC（模型辅助内容）**：增强工作能力的方法论与纪律，与模型相关，更换模型时按 `ABLATION.md` 做消融实验。
-- **存放位置（private/public 原则）**：`private/` = UAC 用户辅助内容；`public/` = MAC 模型辅助内容。本目录（rules）属 UAC，位于 `private/rules/`。
+- **存放位置（private/public 原则）**：`private/` = UAC 用户辅助内容；`public/` = MAC 模型辅助内容。本目录（rules 模板）属 UAC，位于 `private/rules/`。

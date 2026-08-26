@@ -6,7 +6,7 @@
 
 这是自迭代 AI Coding Harness 仓库：与项目**混合在同一目录**（本仓库根 = 项目 `.dev/`）。`.dev/` 按 **private/public 原则**收纳——**`private/` = UAC 用户辅助内容**（跨模型稳定），**`public/` = MAC 模型辅助内容**（换模型需消融）：
 
-- 全局工作规范（`private/rules/`，完整记录）
+- 全局工作规范（项目根 `AGENTS.md` / `CLAUDE.md`，唯一真源，无副本、无项目内同步）
 - 自研 skills（`public/skills/my/`）
 - 从社区拉取的第三方 skills（`public/skills/vendor/`）
 - Codex / Claude Code / MCP 等工具配置模板（`public/configs/`）
@@ -19,7 +19,7 @@
 | 路径 | 内容 | 维护要求 |
 |---|---|---|
 | `README.md` / `AGENTS.md` / `CLAUDE.md` / `.gitignore` | 本仓库入口 | 保持精简，详细内容在 `README.md` |
-| `private/rules/` | 个人全局工作规范（完整）+ 规则模板 | 修改后运行 `public/scripts/sync.ps1` 部署到 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md` |
+| `private/rules/` | 规则模板（`AGENTS.template.md`）+ 消融模板（`ABLATION.md`）+ 说明 | 规范真源在项目根 `AGENTS.md` / `CLAUDE.md`（无副本），运行 `public/scripts/sync.ps1` 部署到 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md` |
 | `public/skills/my/` | 自研 skills | 每个 skill 一个子目录，含 `SKILL.md` |
 | `public/skills/vendor/` | 第三方 skills | 按来源分组，每组必须含 `SOURCE.md` |
 | `public/configs/` | 工具配置模板 | 只用占位符，禁止真实密钥 |
@@ -42,7 +42,7 @@
 
 ## 全局规则维护
 
-- `private/rules/AGENTS.global.md`、`private/rules/CLAUDE.global.md` 是个人全局工作规范，修改后运行 `public/scripts/sync.ps1` 部署。
+- 个人全局工作规范的**唯一真源**在项目根 `AGENTS.md`、`CLAUDE.md`（无副本、不做项目内同步）；修改后运行 `public/scripts/sync.ps1` 部署到 `~/.codex/AGENTS.md`、`~/.claude/CLAUDE.md`。
 - 目标文件已存在时先备份 `.bak-<时间戳>` 再覆盖。
 
 ## 新增/修改 skill 的规则

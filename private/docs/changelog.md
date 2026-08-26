@@ -1,5 +1,10 @@
 # 变更记录
 
+## [0.13.1] - 2026-08-26
+
+- 规则去副本：`AGENTS.md` / `CLAUDE.md` 就是项目根的**唯一真源**，无副本、不做项目内同步；`private/rules/` 只保留模板与 ABLATION。
+- `sync.ps1` 直接部署项目根 `AGENTS.md` / `CLAUDE.md` 到 `~/.codex`、`~/.claude`。
+
 ## [0.13.0] - 2026-08-26
 
 - **记录 private/public 原则（勿忘）**：`private/` = UAC 用户辅助内容（跨模型稳定，指导与用户交互/汇报）；`public/` = MAC 模型辅助内容（增强模型能力，换模型需消融实验）。

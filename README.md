@@ -23,7 +23,7 @@
    ├─ README.md / .gitignore   # 根入口（README 仓库主页展示；.gitignore git 机制）
    ├─ private/                 # UAC 用户辅助内容（本仓库跟踪；项目忽略）
    │  ├─ AGENTS.md / CLAUDE.md # 仓库工作指南
-   │  ├─ rules/                # 全局工作规范（UAC/MAC 分区 + ABLATION）
+   │  ├─ rules/                # 规则模板 + ABLATION（规范真源在项目根 AGENTS.md/CLAUDE.md）
    │  ├─ docs/                 # 使用说明与变更记录
    │  ├─ lab/                  # Agent Lab 框架（规范/词汇表/ADR）
    │  ├─ skills/docs-writing/ skills/review/   # 项目私有 skills（两仓库都不跟踪）
