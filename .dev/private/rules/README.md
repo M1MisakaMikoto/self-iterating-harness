@@ -9,7 +9,7 @@
 ## 内容边界
 
 - **预制内容完整记录**：`AGENTS.md` / `CLAUDE.md` / skills / 配置模板等预先编写的内容，完整保留在本仓库。
-- **agent 工作产物只记框架**：lab 等由 agent 工作产生的实验、报告、证据等内容，只保留结构/模板框架，具体产物留在项目本地，不提交版本库。
+- **agent 工作产物**：lab 实验、报告、证据等位于工作区根 `.dev/public/`，由 harness 仓库记录（如需按"只记框架"收窄，可另行清理）。
 
 ## UAC 与 MAC
 
@@ -23,5 +23,5 @@
   - `public/` = **agent 产出、服务项目**：`docs`、`preview`、`plans`、`lab`（实验）。
 - **UAC / MAC 是规则/提示词内容的分类**（见项目根 `AGENTS.md` / `CLAUDE.md` 内部分区；换模型对 MAC 做 `ABLATION.md` 消融），**不是目录分类**，不要把 UAC/MAC 标签贴在目录上。
 - `AGENTS.md` / `CLAUDE.md`：只有项目根一份（规则唯一真源，由 harness 仓库跟踪），`.dev/` 内不放。
-- 项目仓库不追踪 private（服务 coding agent 的内容，如 skills/scripts/configs）；项目仓库只跟踪 `.dev/public/lab/**` 与两个项目计划文件。
+- 工作区根是 harness 仓库（跟踪 `AGENTS.md` / `CLAUDE.md` / `.dev/**`）；项目代码仓库位于工作区根下的同名子目录（如 `AgentSupport\AgentSupport`），只跟踪代码、不含 `.dev`。
 - 新增内容先按"服务谁"分类：给 coding agent 用的进 private，agent 产出/服务项目的进 public。
