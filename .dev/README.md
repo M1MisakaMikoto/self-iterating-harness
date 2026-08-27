@@ -22,6 +22,7 @@
 │  ├─ README.md / .gitignore   # 根入口
 │  ├─ serve_agent/             # 服务 coding agent（本仓库跟踪、项目忽略）
 │  │  ├─ lab.md                # Agent Lab 指导（唯一描述）
+│  │  ├─ CONTEXT.md            # Agent Lab 词汇表（独立文件）
 │  │  ├─ rules/                # 规则模板 + ABLATION（规范真源在 AGENTS.md/CLAUDE.md）
 │  │  ├─ skills/               # my/ vendor/（harness）+ docs-writing/ review/（项目私有，不跟踪）
 │  │  ├─ scripts/              # sync / validate / hooks / hgit
