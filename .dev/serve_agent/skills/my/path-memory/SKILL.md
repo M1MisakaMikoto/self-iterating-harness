@@ -7,7 +7,7 @@ description: 探索路径记忆的启用、确认与检索。用于判断任务�
 
 ## 目标
 
-把"这次是怎么探到这里的"沉淀下来：目标方向、已确认决策、用户纠正、探索路径、碰壁点、跑通方案、边界条件。记录位于 `.dev/serve_agent/records/<路径slug>.md`，**草稿经用户确认后才写入**。
+把"这次是怎么探到这里的"沉淀下来：目标方向、已确认决策、用户纠正、探索路径、碰壁点、跑通方案、边界条件。记录位于 `.dev/serve_project/records/<路径slug>.md`，**草稿经用户确认后才写入**。
 
 ## 何时启用（agent 自行判断）
 
@@ -17,7 +17,7 @@ description: 探索路径记忆的启用、确认与检索。用于判断任务�
 
 ## 如何启用 / 停用
 
-- 启用：创建标记文件 `<项目>/.dev/serve_agent/records/.staging/.flag-<会话ID>`（内容任意，目录不存在就创建）。会话 ID 来自 SessionStart hook 注入的 `[path-memory] 会话ID=...`。
+- 启用：创建标记文件 `.dev/serve_project/records/.staging/.flag-<会话ID>`（内容任意，目录不存在就创建）。会话 ID 来自 SessionStart hook 注入的 `[path-memory] 会话ID=...`。
 - 停用：任务中途反悔时删除该标记。
 - 启用后**专心工作、不边干边记**；任务结束时 Stop hook 会自动发起一次确认对话。
 
@@ -46,7 +46,7 @@ frontmatter：`path` / `status`（exploration | validated | abandoned）/ `tags`
 2. 按 tag：`powershell -NoProfile -ExecutionPolicy Bypass -File <hooks目录>/search-records.ps1 -Tag 纠正`
 3. 按关键词：`powershell -NoProfile -ExecutionPolicy Bypass -File <hooks目录>/search-records.ps1 -Keyword 关键词`
 4. 列全部：`powershell -NoProfile -ExecutionPolicy Bypass -File <hooks目录>/search-records.ps1 -List`
-5. 直接 rg：`rg "关键词" .dev/serve_agent/records`
+5. 直接 rg：`rg "关键词" .dev/serve_project/records`
 
 `records/README.md` 内有词表、模板与命令速查。
 

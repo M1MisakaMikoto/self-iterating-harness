@@ -1,0 +1,27 @@
+{
+    "description":  "Project-local path-memory hooks for Codex.",
+    "hooks":  {
+                  "SessionStart":  [
+                                       {
+                                           "hooks":  [
+                                                         {
+                                                             "type":  "command",
+                                                             "command":  "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$dir=(Get-Location).Path; while($true){$hook=Join-Path $dir \u0027.dev\\serve_agent\\scripts\\hooks\\session-start.ps1\u0027; if(Test-Path -LiteralPath $hook){\u0026 $hook; exit $LASTEXITCODE}; $parent=Split-Path -Parent $dir; if($parent -eq $dir){exit 0}; $dir=$parent}\"",
+                                                             "timeout":  30
+                                                         }
+                                                     ]
+                                       }
+                                   ],
+                  "Stop":  [
+                               {
+                                   "hooks":  [
+                                                 {
+                                                     "type":  "command",
+                                                     "command":  "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$dir=(Get-Location).Path; while($true){$hook=Join-Path $dir \u0027.dev\\serve_agent\\scripts\\hooks\\stop-hook.ps1\u0027; if(Test-Path -LiteralPath $hook){\u0026 $hook; exit $LASTEXITCODE}; $parent=Split-Path -Parent $dir; if($parent -eq $dir){exit 0}; $dir=$parent}\"",
+                                                     "timeout":  30
+                                                 }
+                                             ]
+                               }
+                           ]
+              }
+}

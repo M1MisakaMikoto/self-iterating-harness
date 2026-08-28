@@ -7,6 +7,8 @@
     - 是否包含 SKILL.md
     - SKILL.md frontmatter 是否包含 name 与 description
   vendor 额外检查 SOURCE.md 是否存在。
+  同时校验项目级 hooks JSON，以及 serve_project 中不存在仍被 harness
+  仓库跟踪的实例文件。
   全部通过退出码为 0，否则为 1。
 
 .EXAMPLE
@@ -67,11 +69,38 @@ if (Test-Path $vendorRoot) {
     }
 }
 
+$DevRoot = Split-Path -Parent $RepoRoot
+$HarnessRoot = Split-Path -Parent $DevRoot
+$hooksFile = Join-Path $HarnessRoot '.codex\hooks.json'
+if (-not (Test-Path -LiteralPath $hooksFile)) {
+    $errors += '缺少项目级 Codex hooks: .codex/hooks.json'
+} else {
+    try {
+        $hooksConfig = Get-Content -LiteralPath $hooksFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        if (-not $hooksConfig.hooks.SessionStart -or -not $hooksConfig.hooks.Stop) {
+            $errors += '.codex/hooks.json 缺少 SessionStart 或 Stop'
+        }
+    } catch {
+        $errors += ".codex/hooks.json 不是合法 JSON: $($_.Exception.Message)"
+    }
+}
+
+if (Test-Path -LiteralPath (Join-Path $HarnessRoot '.git')) {
+    $trackedProjectFiles = @(& git -C $HarnessRoot ls-files -- '.dev/serve_project' | Where-Object {
+        Test-Path -LiteralPath (Join-Path $HarnessRoot $_)
+    })
+    if ($LASTEXITCODE -ne 0) {
+        $errors += '无法读取 harness Git 跟踪边界'
+    } elseif ($trackedProjectFiles.Count -gt 0) {
+        $errors += "serve_project 包含被 harness 跟踪的实例文件: $($trackedProjectFiles -join ', ')"
+    }
+}
+
 if ($errors.Count -gt 0) {
     Write-Host "校验失败:" -ForegroundColor Red
     $errors | ForEach-Object { Write-Host "  - $_" -ForegroundColor Red }
     exit 1
 }
 
-Write-Host "校验通过: skills 结构合法。" -ForegroundColor Green
+Write-Host "校验通过: skills、hooks 与 serve_project 跟踪边界合法。" -ForegroundColor Green
 exit 0

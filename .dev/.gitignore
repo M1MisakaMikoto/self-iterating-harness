@@ -23,11 +23,11 @@ node_modules/
 .venv/
 
 # ---- serve_agent/serve_project 原则 ----
-# serve_agent/ = 服务 coding agent（本仓库跟踪、项目忽略）；其中属于项目本地的部分两仓库都不跟踪
-serve_agent/records/
+# serve_agent/ = 可复用框架，由 harness 仓库跟踪
 serve_agent/skills/docs-writing/
 serve_agent/skills/review/
-# serve_project/ = agent 产出、服务项目（组合区，不在这里忽略）
+# serve_project/ = 当前项目的本地记录与产物，两仓库都不跟踪
+/serve_project/
 
 # ---- 通用缓存产物（两仓库都不跟踪） ----
 __pycache__/

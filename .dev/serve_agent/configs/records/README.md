@@ -28,7 +28,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File <hooks目录>/search-records
 # 列全部
 powershell -NoProfile -ExecutionPolicy Bypass -File <hooks目录>/search-records.ps1 -List
 # 直接 rg
-rg "关键词" .dev/serve_agent/records
+rg "关键词" .dev/serve_project/records
 ```
 
-`<hooks目录>` 在 Codex 下为 `~/.codex/hooks`，在 Claude Code 下为 `~/.claude/hooks`。
+项目级 Codex 直接使用 `.dev/serve_agent/scripts/hooks/` 中的脚本。

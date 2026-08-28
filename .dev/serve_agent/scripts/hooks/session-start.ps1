@@ -3,7 +3,7 @@
     path-memory SessionStart hook：注入会话 ID、待确认草稿、本路径已有记录摘要，
     并指导 agent 在探索性任务开始时启用路径记忆（创建会话标记文件）。
 .DESCRIPTION
-    由 ~/.codex/hooks.json 或 ~/.claude/settings.json 的 SessionStart 事件调用，
+    由项目 `.codex/hooks.json` 或全局 hooks 配置的 SessionStart 事件调用，
     从 stdin 读取 JSON（session_id / cwd），向 stdout 输出注入上下文。
 #>
 $ErrorActionPreference = 'Stop'
@@ -49,7 +49,7 @@ if (-not $cwd) { $cwd = (Get-Location).Path }
 $projectRoot = Find-ProjectRoot -StartDir $cwd
 if (-not $projectRoot) { exit 0 }
 
-$recordsDir = Join-Path $projectRoot '.dev\serve_agent\records'
+$recordsDir = Join-Path $projectRoot '.dev\serve_project\records'
 $staging = Join-Path $recordsDir '.staging'
 $slug = Get-PathSlug -Cwd $cwd -ProjectRoot $projectRoot
 
