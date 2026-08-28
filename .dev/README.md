@@ -7,7 +7,7 @@
 ```text
 <工作区>/
 ├─ .git/                       # harness 仓库
-├─ AGENTS.md / CLAUDE.md       # 规则真源
+├─ AGENTS.md                    # 规则真源
 ├─ .agents/skills/             # Codex 项目级 skill 入口
 ├─ .codex/hooks.json           # Codex 项目级 hooks
 ├─ .dev/

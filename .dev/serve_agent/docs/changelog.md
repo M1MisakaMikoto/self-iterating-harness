@@ -1,5 +1,11 @@
 # 变更记录
 
+## [0.17.0] - 2026-08-28
+
+- 规则收敛为单文档：删除 `CLAUDE.md`，规则唯一真源只保留 `AGENTS.md`；`sync.ps1` 全局规则只部署 `~/.codex/AGENTS.md`。
+- UAC 3 增加 mermaid 语法校验约束：交付前必须工具校验（新增 `scripts/validate-mermaid.ps1`，基于 mermaid 官方解析器 + jsdom，纯 Node 支持 flowchart 等全部图类型），工具不可用时按特殊字符引号规则自查。
+- 新增 UAC 8：用户提出异议/指出问题时当轮按"现象 → 根因 → 纠正/预防"总结教训，并重出修订方案、列出变更点，持续迭代直到用户无异议；落盘按 UAC 7（tag=纠正）。
+
 ## [0.16.0] - 2026-08-26
 
 - 目录改名：`private/` → `serve_agent/`、`public/` → `serve_project/`（按服务对象命名）。

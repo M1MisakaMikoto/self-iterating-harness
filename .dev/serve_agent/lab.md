@@ -1,6 +1,6 @@
 # Agent Lab 指导（lab.md）
 
-本文件是 Agent Lab 的**唯一指导**（预制内容，随 harness 部署到每个项目）。全局工作规则见工作区根 `AGENTS.md` / `CLAUDE.md`；本文件只定义 lab 特有约定。
+本文件是 Agent Lab 的**唯一指导**（预制内容，随 harness 部署到每个项目）。全局工作规则见工作区根 `AGENTS.md`；本文件只定义 lab 特有约定。
 
 ## 角色分工（避免重复）
 
