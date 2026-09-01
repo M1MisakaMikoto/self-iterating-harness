@@ -12,6 +12,7 @@
 - 工作区根目录是 harness 配置仓库：`AGENTS.md`、`.dev/` 位于根目录，由 harness 仓库跟踪。
 - 项目代码仓库位于工作区根下的同名子目录（如 `AgentSupport\AgentSupport`）；涉及项目代码的路径与命令需先进入该子目录执行，根目录 `.dev/` 内的 lab/plans 等产物由 harness 仓库记录。
 - Agent Lab：指导见 `.dev/serve_agent/lab.md`；实验实施于 `.dev/serve_project/lab/`。
+- 可视化设计预览：单 HTML 静态页面默认放 `.dev/serve_project/preview/`，由 harness 仓库记录。
 - 需求确认与方案压力测试遵循 `grill-with-docs` skill（grilling + domain-modeling）：无因果关系问题同轮批量提问、达成共识前不行动；提问开始即在 `.dev/serve_project/plans/` 新建文档记录所有确认项；词汇表 `serve_agent/CONTEXT.md`，ADR `serve_project/lab/docs/adr/`。
 
 ## UAC（用户辅助内容，跨模型稳定）
@@ -23,6 +24,7 @@
    - 怎么确保说到的都做到了（方案设计和实际落地）
 2. 遇到问题做最小验证，找出真正能解决问题的办法：做修改、做测试，之后不管成功与否都应该撤回更改，然后向用户报告你打算怎么解决，等待用户批准后才能将更改保留在项目里。
 3. 遇到描述性任务应该由浅入深，从抽象到具体，从比喻到落地，用逻辑图和类图描述（mermaid 格式）；给出小段源码作为证据。使用 mermaid 前必须做语法校验：优先用本工作区 `.dev/serve_agent/scripts/validate-mermaid.ps1`；工具不可用时才按特殊字符规则自查（标签含 `{}` `[]` `()` `|` 等特殊字符必须加引号，如 `A["..."]`、`-->|"..."|`）。mermaid 可靠写法：流程图用 ` ```mermaid ` 换行 `flowchart LR`；类图用 ` ```mermaid classDiagram ` 且代码首行重复 `classDiagram`——校验脚本会把围栏后单个 token 当图类型吞掉（单 token 类型行必须首行重复）；`direction` 必须单独一行，不能与 `classDiagram` 同行。
+涉及界面/可视化设计时，默认构建单 HTML 静态预览页展示效果：不同方案用标签页切换，配可开关的文字浮标说明；预览文件放 `.dev/serve_project/preview/`。
 4. 严禁给出不确定的回复，不确定点必须查清才能回复。
 5. 默认写断言、禁止随便写兜底逻辑；写兜底逻辑前必须让用户确认。
 6. 用户已经明确提出变更范围时，先完成该变更再汇报，不得用与该变更无关的问题阻塞执行。
