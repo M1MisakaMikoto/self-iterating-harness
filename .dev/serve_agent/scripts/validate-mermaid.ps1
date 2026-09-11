@@ -89,7 +89,9 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 Copy-Item -LiteralPath (Join-Path $scriptDir "validate-mermaid.mjs") -Destination (Join-Path $toolDir "validate-mermaid.mjs") -Force
 
 $tmp = Join-Path $env:TEMP ("mermaid-blocks-" + [guid]::NewGuid().ToString('N') + ".json")
-$json = $blocks | ConvertTo-Json -Depth 6
+# 单元素数组会被 ConvertTo-Json 序列化成对象（Windows PowerShell 5.1 无 -AsArray），
+# 这里手工拼数组，保证 1 个块也是合法 JSON 数组。
+$json = "[" + (($blocks | ForEach-Object { $_ | ConvertTo-Json -Depth 6 -Compress }) -join ",") + "]"
 [System.IO.File]::WriteAllText($tmp, $json, (New-Object System.Text.UTF8Encoding($false)))
 try {
     & $node.Source (Join-Path $toolDir "validate-mermaid.mjs") $tmp
